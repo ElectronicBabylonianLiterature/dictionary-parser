@@ -4,8 +4,8 @@ describe('parseRow', () => {
   const examples = [
     {name: 'lemma', row: '**lemma** description'},
     {name: 'italic lemma', row: '***lemma*** description'},
-    {name: 'lemma with asterisk', row: '**\\*lemma** description', lemma: '\\*lemma'},
-    {name: 'italic lemma with asterisk', row: '**\\*lemma** description', lemma: '\\*lemma'},
+    {name: 'lemma with asterisk', row: '**\\*lemma** description', lemma: '*lemma'},
+    {name: 'italic lemma with asterisk', row: '**\\*lemma** description', lemma: '*lemma'},
     {name: 'homonym', row: '**lemma** II description', homonym: 'II'}
   ]
 
