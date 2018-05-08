@@ -16,5 +16,8 @@
   },
   "scripts": {
     "test": "node node_modules/jasmine/bin/jasmine.js"
+  },
+  "standard": {
+    "globals": ["it", "describe", "expect"]
   }
 }
