@@ -2,9 +2,10 @@ describe('parseRow', () => {
     const parseRow = require('../lib/parseRow')
     const row = '**lemma** description'
 
-    it('extracts the lemma correctly', ()=> {
+    it('extracts the data correctly', ()=> {
         expect(parseRow(row)).toEqual({
-            lemma: 'lemma'
+            lemma: 'lemma',
+            source: row
         })
     })
 })
