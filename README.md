@@ -4,3 +4,12 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 A script which transforms a dictionary from markdown to JSON.
+
+The dictionary entries are is expected to be in the format: `**<lemma>**<description>` or `***<lemma>***<description>` which will be parsed to:
+```
+{
+  "lemma": "<lemma>",
+  "definition": "<definition>,
+  "source": "<the original row>"
+}
+```

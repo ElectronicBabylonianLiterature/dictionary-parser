@@ -1,12 +1,20 @@
 describe('parseRow', () => {
   const parseRow = require('../lib/parseRow')
-  const row = '**lemma** description'
 
-  it('extracts the data correctly', () => {
-    expect(parseRow(row)).toEqual({
-      lemma: 'lemma',
-      definition: 'description',
-      source: row
+  const examples = [
+    {name: 'lemma', row: '**lemma** description', expected: 'lemma'},
+    {name: 'italic lemma', row: '***lemma*** description', expected: 'lemma'},
+    {name: 'lemma with asterisk', row: '**\\*lemma** description', expected: '\\*lemma'},
+    {name: 'italic lemma with asterisk', row: '**\\*lemma** description', expected: '\\*lemma'}
+  ]
+
+  examples.forEach(({name, row, expected}) => {
+    it(`extracts the data correctly from ${name}`, () => {
+      expect(parseRow(row)).toEqual({
+        lemma: expected,
+        definition: 'description',
+        source: row
+      })
     })
   })
 })
