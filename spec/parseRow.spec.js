@@ -3,8 +3,8 @@ describe('parseRow', () => {
 
   const definitions = [
     '"definition"',
-    '(definition)'
-    // '**\\~** definition'
+    '(definition)',
+    '**\\~** definition'
   ]
 
   definitions.forEach(definition => {
