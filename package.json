@@ -9,5 +9,8 @@
   "engines": {
     "node": "^10.0.0",
     "yarn": "^1.6.0"
+  },
+  "devDependencies": {
+    "jasmine": "^3.1.0"
   }
 }
