@@ -21,9 +21,9 @@ describe('Entry', () => {
   ]
 
   const formExamples = [
-    '',
-    ', *form1*, *form2*',
-    ', *form1*'
+    ['', []],
+    [', *form1*, *form2*', ['form1', 'form2']],
+    [', *form1*', ['form1']]
   ]
 
   const definitions = [
@@ -33,7 +33,7 @@ describe('Entry', () => {
   ]
 
   for (const [lemma, homonym, forms, definition] of cartesian(lemmaExamples, homonymExamples, formExamples, definitions)) {
-    const row = `${lemma[0]}${homonym[0]}${forms} ${definition}`
+    const row = `${lemma[0]}${homonym[0]}${forms[0]} ${definition}`
 
     describe(`row is: ${row}`, () => {
       const entry = new Entry(row)
@@ -45,7 +45,7 @@ describe('Entry', () => {
         expect(entry.homonym).toEqual(homonym[1])
       })
       it('parses forms correctly', () => {
-        expect(entry.forms).toEqual(forms)
+        expect(entry.forms).toEqual(forms[1])
       })
       it('parses definition correctly', () => {
         expect(entry.definition).toEqual(definition)
