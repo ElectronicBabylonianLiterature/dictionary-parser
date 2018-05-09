@@ -35,11 +35,11 @@ describe('Entry', () => {
 
   const derivedExamples = [
     ['', []],
-    [' \\> *derived1*?, *derived2*', [[{lemma: 'derived1', homonym: null, notes: '?'}, {lemma: 'derived2', homonym: null, notes: ''}]]],
-    [' \\> *derived1*, *derived2*; *derived3*', [[{lemma: 'derived1', homonym: null, notes: ''}, {lemma: 'derived2', homonym: null, notes: ''}], [{lemma: 'derived3', homonym: null, notes: ''}]]],
-    [' \\> *derived1* I.VI', [[{lemma: 'derived1', homonym: 'I', notes: ''}, {lemma: 'derived1', homonym: 'VI', notes: ''}]]],
-    [' \\> *cf.* *derived*', [[{lemma: 'derived', homonym: null, notes: 'cf.'}]]],
-    [' \\> *cf.* *derived*?', [[{lemma: 'derived', homonym: null, notes: 'cf. ?'}]]]
+    [' \\> *derived1*?, *derived2*', [[{lemma: 'derived1', homonym: 'I', notes: '?'}, {lemma: 'derived2', homonym: 'I', notes: ''}]]],
+    [' \\> *derived1*, *derived2*; *derived3*', [[{lemma: 'derived1', homonym: 'I', notes: ''}, {lemma: 'derived2', homonym: 'I', notes: ''}], [{lemma: 'derived3', homonym: 'I', notes: ''}]]],
+    [' \\> *derived1* II.VI', [[{lemma: 'derived1', homonym: 'II', notes: ''}, {lemma: 'derived1', homonym: 'VI', notes: ''}]]],
+    [' \\> *cf.* *derived*', [[{lemma: 'derived', homonym: 'I', notes: 'cf.'}]]],
+    [' \\> *cf.* *derived*?', [[{lemma: 'derived', homonym: 'I', notes: 'cf. ?'}]]]
   ]
 
   for (const [lemma, homonym, forms, definition, derived] of cartesian(
