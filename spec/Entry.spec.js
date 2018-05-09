@@ -1,5 +1,5 @@
-describe('parseRow', () => {
-  const parseRow = require('../lib/parseRow')
+describe('Entry', () => {
+  const Entry = require('../lib/Entry')
 
   const definitions = [
     '"definition"',
@@ -19,13 +19,23 @@ describe('parseRow', () => {
     ]
 
     examples.forEach(({name, row, lemma = 'lemma', homonym = 'I', forms = ''}) => {
-      it(`extracts the data correctly from ${row}`, () => {
-        expect(parseRow(row)).toEqual({
-          lemma: lemma,
-          homonym: homonym,
-          forms: forms,
-          definition: definition,
-          source: row
+      describe(`row is: ${row}`, () => {
+        const entry = new Entry(row)
+
+        it('parses lemma correctly', () => {
+          expect(entry.lemma).toEqual(lemma)
+        })
+        it('parses homonym correctly', () => {
+          expect(entry.homonym).toEqual(homonym)
+        })
+        it('parses forms correctly', () => {
+          expect(entry.forms).toEqual(forms)
+        })
+        it('parses definition correctly', () => {
+          expect(entry.definition).toEqual(definition)
+        })
+        it('sets source to original row', () => {
+          expect(entry.source).toEqual(row)
         })
       })
     })
