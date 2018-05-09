@@ -19,6 +19,7 @@
   },
   "standard": {
     "globals": [
+      "jasmine",
       "it",
       "describe",
       "expect"
