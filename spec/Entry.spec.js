@@ -26,14 +26,25 @@ describe('Entry', () => {
     [', *form1*', ['form1']]
   ]
 
-  const definitions = [
+  const definitionExamples = [
     '"definition"',
     '(definition)',
     '**\\~** definition'
   ]
 
-  for (const [lemma, homonym, forms, definition] of cartesian(lemmaExamples, homonymExamples, formExamples, definitions)) {
-    const row = `${lemma[0]}${homonym[0]}${forms[0]} ${definition}`
+  const derivedExamples = [
+    ['', ''],
+    [' \\> derived', '\\> derived']
+  ]
+
+  for (const [lemma, homonym, forms, definition, derived] of cartesian(
+    lemmaExamples,
+    homonymExamples,
+    formExamples,
+    definitionExamples,
+    derivedExamples
+  )) {
+    const row = `${lemma[0]}${homonym[0]}${forms[0]} ${definition}${derived[0]}`
 
     describe(`row is: ${row}`, () => {
       const entry = new Entry(row)
@@ -41,15 +52,23 @@ describe('Entry', () => {
       it('parses lemma correctly', () => {
         expect(entry.lemma).toEqual(lemma[1])
       })
+
       it('parses homonym correctly', () => {
         expect(entry.homonym).toEqual(homonym[1])
       })
+
       it('parses forms correctly', () => {
         expect(entry.forms).toEqual(forms[1])
       })
+
       it('parses definition correctly', () => {
         expect(entry.definition).toEqual(definition)
       })
+
+      it('parses derived correctly', () => {
+        expect(entry.derived).toEqual(derived[1])
+      })
+
       it('sets source to original row', () => {
         expect(entry.source).toEqual(row)
       })

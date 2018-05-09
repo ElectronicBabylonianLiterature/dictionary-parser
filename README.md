@@ -5,13 +5,14 @@
 
 A script which transforms a dictionary from markdown to JSON.
 
-The dictionary entries are is expected to be in the format: `**<lemma>** <optional homonym><optional forms after a comma> <description starting with ", (, or **\~**>` which will be parsed to:
+The dictionary entries are is expected to be in the format: `**<lemma>** <optional homonym><optional forms after a comma> <description starting with ", (, or **\~**><optinal derived starting with \>>` which will be parsed to:
 ```
 {
   "lemma": "<lemma with mardown removed>",
   "homonym: "<homonym or I if not specified>
   "forms": <forms or empty string if not specified>
   "definition": "<definition>,
+  "derived": "<derived or empty string if not specified>
   "source": "<the original row>"
 }
 ```
