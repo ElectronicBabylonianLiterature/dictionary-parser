@@ -33,8 +33,9 @@ describe('Entry', () => {
   ]
 
   const derivedExamples = [
-    ['', ''],
-    [' \\> derived', '\\> derived']
+    ['', []],
+    [' \\> derived', ['derived']],
+    [' \\> derived1, derived2', ['derived1', 'derived2']]
   ]
 
   for (const [lemma, homonym, forms, definition, derived] of cartesian(
