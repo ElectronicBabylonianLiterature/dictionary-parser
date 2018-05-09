@@ -28,6 +28,7 @@ describe('Entry', () => {
 
   const definitionExamples = [
     '"definition"',
+    '\'definition\'',
     '(definition)',
     '**\\~** definition'
   ]
