@@ -36,7 +36,7 @@ describe('Entry', () => {
     ['', []],
     [' \\> *derived1*?, *derived2*', [[{lemma: 'derived1', homonym: null, notes: '?'}, {lemma: 'derived2', homonym: null, notes: ''}]]],
     [' \\> *derived1*, *derived2*; *derived3*', [[{lemma: 'derived1', homonym: null, notes: ''}, {lemma: 'derived2', homonym: null, notes: ''}], [{lemma: 'derived3', homonym: null, notes: ''}]]],
-    [' \\> *derived1* I.VI', [[{lemma: 'derived1', homonym: 'I.VI', notes: ''}]]]
+    [' \\> *derived1* I.VI', [[{lemma: 'derived1', homonym: 'I', notes: ''}, {lemma: 'derived1', homonym: 'VI', notes: ''}]]]
   ]
 
   for (const [lemma, homonym, forms, definition, derived] of cartesian(
