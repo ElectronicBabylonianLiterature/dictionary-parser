@@ -1,3 +1,4 @@
+const parseForms = require('../lib/parseForms')
 const parseDerived = require('../lib/parseDerived')
 
 function * cartesian (head, ...tail) {
@@ -23,9 +24,9 @@ describe('Entry', () => {
   ]
 
   const formExamples = [
-    ['', []],
-    [', *form1*, *form2*', ['form1', 'form2']],
-    [', *form1*', ['form1']]
+    '',
+    ', *form1*, *form2*',
+    ', *form1*'
   ]
 
   const definitionExamples = [
@@ -57,7 +58,7 @@ describe('Entry', () => {
     derivedExamples,
     derivedFromExamples
   )) {
-    const row = `${lemma[0]}${homonym[0]}${forms[0]} ${definition}${derived}${derivedFrom[0]}`
+    const row = `${lemma[0]}${homonym[0]}${forms} ${definition}${derived}${derivedFrom[0]}`
 
     describe(`row is: ${row}`, () => {
       const entry = new Entry(row)
@@ -71,7 +72,7 @@ describe('Entry', () => {
       })
 
       it('parses forms correctly', () => {
-        expect(entry.forms).toEqual(forms[1])
+        expect(entry.forms).toEqual(parseForms(forms))
       })
 
       it('parses definition correctly', () => {
