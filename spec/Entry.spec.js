@@ -1,3 +1,5 @@
+const parseDerived = require('../lib/parseDerived')
+
 function * cartesian (head, ...tail) {
   // From https://stackoverflow.com/a/44344803
   let remainder = tail.length ? cartesian(...tail) : [[]]
@@ -34,12 +36,12 @@ describe('Entry', () => {
   ]
 
   const derivedExamples = [
-    ['', []],
-    [' \\> *derived1*?, *derived2*', [[{lemma: 'derived1', homonym: 'I', notes: '?'}, {lemma: 'derived2', homonym: 'I', notes: ''}]]],
-    [' \\> *derived1*, *derived2*; *derived3*', [[{lemma: 'derived1', homonym: 'I', notes: ''}, {lemma: 'derived2', homonym: 'I', notes: ''}], [{lemma: 'derived3', homonym: 'I', notes: ''}]]],
-    [' \\> *derived1* II.VI', [[{lemma: 'derived1', homonym: 'II', notes: ''}, {lemma: 'derived1', homonym: 'VI', notes: ''}]]],
-    [' \\> *cf.* *derived*', [[{lemma: 'derived', homonym: 'I', notes: 'cf.'}]]],
-    [' \\> *cf.* *derived*?', [[{lemma: 'derived', homonym: 'I', notes: 'cf. ?'}]]]
+    '',
+    ' \\> *derived1*?, *derived2*',
+    ' \\> *derived1*, *derived2*; *derived3*',
+    ' \\> *derived1* II.VI',
+    ' \\> *cf.* *derived*',
+    ' \\> *cf.* *derived*?'
   ]
 
   for (const [lemma, homonym, forms, definition, derived] of cartesian(
@@ -49,7 +51,7 @@ describe('Entry', () => {
     definitionExamples,
     derivedExamples
   )) {
-    const row = `${lemma[0]}${homonym[0]}${forms[0]} ${definition}${derived[0]}`
+    const row = `${lemma[0]}${homonym[0]}${forms[0]} ${definition}${derived}`
 
     describe(`row is: ${row}`, () => {
       const entry = new Entry(row)
@@ -71,7 +73,7 @@ describe('Entry', () => {
       })
 
       it('parses derived correctly', () => {
-        expect(entry.derived).toEqual(derived[1])
+        expect(entry.derived).toEqual(parseDerived(derived))
       })
 
       it('sets source to original row', () => {
