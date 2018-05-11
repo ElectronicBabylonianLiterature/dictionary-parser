@@ -44,14 +44,20 @@ describe('Entry', () => {
     ' \\> *cf.* *derived*?'
   ]
 
-  for (const [lemma, homonym, forms, definition, derived] of cartesian(
+  const derivedFromExamples = [
+    ['', null],
+    [' \\< *derivedFrom*', 'derivedFrom']
+  ]
+
+  for (const [lemma, homonym, forms, definition, derived, derivedFrom] of cartesian(
     lemmaExamples,
     homonymExamples,
     formExamples,
     definitionExamples,
-    derivedExamples
+    derivedExamples,
+    derivedFromExamples
   )) {
-    const row = `${lemma[0]}${homonym[0]}${forms[0]} ${definition}${derived}`
+    const row = `${lemma[0]}${homonym[0]}${forms[0]} ${definition}${derived}${derivedFrom[0]}`
 
     describe(`row is: ${row}`, () => {
       const entry = new Entry(row)
@@ -74,6 +80,10 @@ describe('Entry', () => {
 
       it('parses derived correctly', () => {
         expect(entry.derived).toEqual(parseDerived(derived))
+      })
+
+      it('parses derived from correctly', () => {
+        expect(entry.derivedFrom).toEqual(derivedFrom[1])
       })
 
       it('sets source to original row', () => {
