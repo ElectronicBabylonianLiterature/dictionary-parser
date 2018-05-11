@@ -105,5 +105,22 @@ describe('Entry', () => {
         expect(entry.definition).toEqual('"definition"')
       })
     })
+
+    describe('derived after derived from', () => {
+      const row = '**lemma** "definition"; \\< *derivedFrom*; \\> *derived*'
+      const entry = new Entry(row)
+
+      it('parses derived correctly', () => {
+        expect(entry.derived).toEqual([[{
+          lemma: 'derived',
+          homonym: 'I',
+          notes: ''
+        }]])
+      })
+
+      it('parses derived from correctly', () => {
+        expect(entry.derivedFrom).toEqual('derivedFrom')
+      })
+    })
   })
 })
