@@ -1,10 +1,10 @@
 const examples = [
   ['', []],
-  [' \\> *derived1*?, *derived2*', [[{lemma: 'derived1', homonym: 'I', notes: '?'}, {lemma: 'derived2', homonym: 'I', notes: ''}]]],
-  [' \\> *derived1*, *derived2*; *derived3*', [[{lemma: 'derived1', homonym: 'I', notes: ''}, {lemma: 'derived2', homonym: 'I', notes: ''}], [{lemma: 'derived3', homonym: 'I', notes: ''}]]],
-  [' \\> *derived1* II.VI', [[{lemma: 'derived1', homonym: 'II', notes: ''}, {lemma: 'derived1', homonym: 'VI', notes: ''}]]],
-  [' \\> *cf.* *derived*', [[{lemma: 'derived', homonym: 'I', notes: 'cf.'}]]],
-  [' \\> *cf.* *derived*?', [[{lemma: 'derived', homonym: 'I', notes: 'cf. ?'}]]]
+  [' \\> *derived1*?, *derived2*', [[{lemma: 'derived1', homonym: 'I', notes: ['?']}, {lemma: 'derived2', homonym: 'I', notes: []}]]],
+  [' \\> *derived1*, *derived2*; *derived3*', [[{lemma: 'derived1', homonym: 'I', notes: []}, {lemma: 'derived2', homonym: 'I', notes: []}], [{lemma: 'derived3', homonym: 'I', notes: []}]]],
+  [' \\> *derived1* II.VI', [[{lemma: 'derived1', homonym: 'II', notes: []}, {lemma: 'derived1', homonym: 'VI', notes: []}]]],
+  [' \\> *cf.* *derived*', [[{lemma: 'derived', homonym: 'I', notes: ['cf.']}]]],
+  [' \\> *cf.* *derived*?', [[{lemma: 'derived', homonym: 'I', notes: ['cf.', '?']}]]]
 ]
 
 describe('parseDerived', () => {

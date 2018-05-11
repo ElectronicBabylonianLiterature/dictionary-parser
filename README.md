@@ -24,6 +24,6 @@ Derived words have following structure:
 {
   "lemma": "<lemma with mardown removed>",
   "homonym: "<homonym or I if not specified>,
-  "notes": "<extra information e.g. cf. or ?>"
+  "notes": "<an array of extra information e.g. cf. or ?>"
 }
 ```

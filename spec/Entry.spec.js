@@ -114,7 +114,7 @@ describe('Entry', () => {
         expect(entry.derived).toEqual([[{
           lemma: 'derived',
           homonym: 'I',
-          notes: ''
+          notes: []
         }]])
       })
 
