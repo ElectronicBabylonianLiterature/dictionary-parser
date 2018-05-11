@@ -18,12 +18,10 @@
     "test": "node node_modules/jasmine/bin/jasmine.js"
   },
   "standard": {
-    "globals": [
-      "jasmine",
-      "it",
-      "describe",
-      "expect"
-    ]
+    "env": {
+      "jasmine": true,
+      "node": true
+    }
   },
   "dependencies": {
     "lodash": "^4.17.10"
