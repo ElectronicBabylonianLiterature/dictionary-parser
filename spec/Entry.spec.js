@@ -34,7 +34,8 @@ describe('Entry', () => {
     '"definition"',
     '\'definition\'',
     '(definition)',
-    '**\\~** definition'
+    '**\\~** definition',
+    '**1.** conjugation'
   ]
 
   const derivedExamples = [
