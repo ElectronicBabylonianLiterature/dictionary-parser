@@ -10,9 +10,18 @@ The dictionary entries are is expected to be in the format: `**<lemma>** <option
 {
   "lemma": "<lemma with mardown removed>",
   "homonym: "<homonym or I if not specified>
-  "forms": <forms or empty string if not specified>
+  "forms": <array of forms or empty array if none specified>
   "definition": "<definition>,
-  "derived": "<derived or empty string if not specified>
+  "derived": "<array of derived words or an empty empty array if none specified>
   "source": "<the original row>"
+}
+```
+
+Derived words have following structure:
+```
+{
+  "lemma": "<lemma with mardown removed>",
+  "homonym: "<homonym or I if not specified>,
+  "notes": "<extra information e.g. cf. or ?>"
 }
 ```
