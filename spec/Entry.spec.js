@@ -128,5 +128,24 @@ describe('Entry', () => {
         expect(entry.derivedFrom).toEqual('derivedFrom')
       })
     })
+
+    describe('meanig only in conjugation', () => {
+      const row = '**lemma**, *form* **1.** conjugation "meaning1, meaning2";'
+      const entry = new Entry(row)
+
+      it('parses forms correctly', () => {
+        expect(entry.forms).toEqual([
+          {lemma: 'form', notes: []}
+        ])
+      })
+
+      it('parses definition correctly', () => {
+        expect(entry.definition).toEqual('')
+      })
+
+      it('parses conjugations correctly', () => {
+        expect(entry.conjugations).toEqual(' **1.** conjugation "meaning1, meaning2";')
+      })
+    })
   })
 })
