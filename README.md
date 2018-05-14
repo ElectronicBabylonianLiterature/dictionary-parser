@@ -11,19 +11,27 @@ The dictionary entries are is expected to be in the format: `**<lemma>** <option
 ```
 {
   "lemma": "<lemma with mardown removed>",
-  "homonym: "<homonym or I if not specified>
-  "forms": <array of forms or empty array if none specified>
+  "homonym: "<homonym or I if not specified>",
+  "forms": <array of forms or an empty array if none specified>,
   "definition": "<definition>,
-  "derived": "<array of derived words or an empty empty array if none specified>
+  "derived": <array of derived words or an empty empty array if none specified>,
   "source": "<the original row>"
 }
 ```
 
-Derived words have following structure:
+```
+Forms have the following structure:
+{
+  "lemma": "<lemma with mardown removed>",
+  "notes": <an array of extra information>
+}
+```
+
+Derived words have the following structure:
 ```
 {
   "lemma": "<lemma with mardown removed>",
   "homonym: "<homonym or I if not specified>,
-  "notes": "<an array of extra information e.g. cf. or ?>"
+  "notes": <an array of extra information e.g. cf. or ?>
 }
 ```
