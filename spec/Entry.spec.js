@@ -27,7 +27,8 @@ describe('Entry', () => {
     '',
     ', *form1*, *form2*',
     ', *form1*',
-    ', *form1*; *form2*'
+    ', *form1*; *form2*',
+    ', note *form*'
   ]
 
   const definitionExamples = [

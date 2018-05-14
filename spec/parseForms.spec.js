@@ -1,8 +1,9 @@
 const formExamples = [
   ['', []],
-  [', *form1*, *form2*', ['form1', 'form2']],
-  [', *form1*', ['form1']],
-  [', *form1*; *form2*', ['form1', 'form2']]
+  [', *form1*, *form2*', [{lemma: 'form1', notes: []}, {lemma: 'form2', notes: []}]],
+  [', *form1*', [{lemma: 'form1', notes: []}]],
+  [', *form1*; *form2*', [{lemma: 'form1', notes: []}, {lemma: 'form2', notes: []}]],
+  [', note1 *form* note2', [{lemma: 'form', notes: ['note1', 'note2']}]]
 ]
 
 describe('parseDerived', () => {
