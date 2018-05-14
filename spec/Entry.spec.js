@@ -32,7 +32,12 @@ describe('Entry', () => {
     '\'definition\'',
     '(definition)',
     '**\\~** definition',
-    '**1.** conjugation'
+    ''
+  ]
+
+  const conjugationExamples = [
+    '',
+    ' **1.** conjugation;'
   ]
 
   const derivedExamples = [
@@ -45,15 +50,16 @@ describe('Entry', () => {
     [' \\< *derivedFrom*', 'derivedFrom']
   ]
 
-  for (const [lemma, homonym, forms, definition, derived, derivedFrom] of cartesian(
+  for (const [lemma, homonym, forms, definition, conjugations, derived, derivedFrom] of cartesian(
     lemmaExamples,
     homonymExamples,
     formExamples,
     definitionExamples,
+    conjugationExamples,
     derivedExamples,
     derivedFromExamples
   )) {
-    const row = `${lemma[0]}${homonym[0]}${forms} ${definition}${derived}${derivedFrom[0]}`
+    const row = `${lemma[0]}${homonym[0]}${forms} ${definition}${conjugations}${derived}${derivedFrom[0]}`
 
     describe(`row is: ${row}`, () => {
       const entry = new Entry(row)
@@ -72,6 +78,10 @@ describe('Entry', () => {
 
       it('parses definition correctly', () => {
         expect(entry.definition).toEqual(definition)
+      })
+
+      it('parses conjugations correctly', () => {
+        expect(entry.conjugations).toEqual(conjugations)
       })
 
       it('parses derived correctly', () => {
