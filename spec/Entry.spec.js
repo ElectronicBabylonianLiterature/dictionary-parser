@@ -19,16 +19,12 @@ describe('Entry', () => {
 
   const homonymExamples = [
     ['', 'I'],
-    [' II', 'II'],
     [' VII', 'VII']
   ]
 
   const formExamples = [
     '',
-    ', *form1*, *form2*',
-    ', *form1*',
-    ', *form1*; *form2*',
-    ', note *form*'
+    ', *form1*, note *form2*; *form3*'
   ]
 
   const definitionExamples = [
@@ -41,11 +37,7 @@ describe('Entry', () => {
 
   const derivedExamples = [
     '',
-    ' \\> *derived1*?, *derived2*',
-    ' \\> *derived1*, *derived2*; *derived3*',
-    ' \\> *derived1* II.VI',
-    ' \\> *cf.* *derived*',
-    ' \\> *cf.* *derived*?'
+    ' \\> *derived1*?, *derived2 II.VI*; *cf.* *derived3*'
   ]
 
   const derivedFromExamples = [
