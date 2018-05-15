@@ -97,6 +97,10 @@ describe('Entry', () => {
       it('sets source to original row', () => {
         expect(entry.source).toEqual(row)
       })
+
+      it('is not a link', () => {
+        expect(entry.isLink).toEqual(false)
+      })
     })
   }
 
@@ -147,6 +151,53 @@ describe('Entry', () => {
 
       it('parses conjugations correctly', () => {
         expect(entry.conjugations).toEqual(' **1.** conjugation "meaning1, meaning2";')
+      })
+    })
+
+    describe('links', () => {
+      describe('plain', () => {
+        const row = '**\\*source** *cf.* *target*'
+        const entry = new Entry(row)
+
+        it('is link', () => {
+          expect(entry.isLink).toEqual(true)
+        })
+      })
+
+      describe('with note', () => {
+        const row = '**\\*source** *cf.* *target* note'
+        const entry = new Entry(row)
+
+        it('is link', () => {
+          expect(entry.isLink).toEqual(true)
+        })
+      })
+
+      describe('with shared italics', () => {
+        const row = '**source** *cf. target*'
+        const entry = new Entry(row)
+
+        it('is link', () => {
+          expect(entry.isLink).toEqual(true)
+        })
+      })
+
+      describe('with extra information', () => {
+        const row = '**source** *cf.* *target* extra'
+        const entry = new Entry(row)
+
+        it('is link', () => {
+          expect(entry.isLink).toEqual(true)
+        })
+      })
+
+      describe('with also', () => {
+        const row = '**source** *cf.* also *target*'
+        const entry = new Entry(row)
+
+        it('is link', () => {
+          expect(entry.isLink).toEqual(true)
+        })
       })
     })
   })
