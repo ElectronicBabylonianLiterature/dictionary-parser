@@ -37,7 +37,9 @@ describe('Entry', () => {
 
   const conjugationExamples = [
     '',
-    ' **1.** conjugation;'
+    ' **1.** conjugation;',
+    ' **G** conjugation;',
+    ' **A.** conjugation;'
   ]
 
   const derivedExamples = [
