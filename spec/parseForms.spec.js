@@ -3,10 +3,11 @@ const formExamples = [
   [', *form1*, *form2*', [{lemma: 'form1', notes: []}, {lemma: 'form2', notes: []}]],
   [', *form1*', [{lemma: 'form1', notes: []}]],
   [', *form1*; *form2*', [{lemma: 'form1', notes: []}, {lemma: 'form2', notes: []}]],
-  [', note1 *form* note2', [{lemma: 'form', notes: ['note1', 'note2']}]]
+  [', note1 *form* note2', [{lemma: 'form', notes: ['note1', 'note2']}]],
+  [', \\**form1*', [{lemma: '*form1', notes: []}]]
 ]
 
-describe('parseDerived', () => {
+describe('parseForms', () => {
   const parseForms = require('../lib/parseForms')
 
   formExamples.forEach(form => {
