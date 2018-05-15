@@ -28,7 +28,7 @@ describe('Entry', () => {
   ]
 
   const definitionExamples = [
-    '"definition"',
+    '"definition1, definition2" *italic* "definition3"',
     '\'definition\'',
     '(definition)',
     '**\\~** definition',
