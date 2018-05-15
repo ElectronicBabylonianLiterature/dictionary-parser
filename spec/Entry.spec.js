@@ -209,6 +209,15 @@ describe('Entry', () => {
           expect(entry.isLink).toEqual(true)
         })
       })
+
+      describe('with etc. befofe *cf.*', () => {
+        const row = '**source** etc. *cf.* *target*'
+        const entry = new Entry(row)
+
+        it('is link', () => {
+          expect(entry.isLink).toEqual(true)
+        })
+      })
     })
   })
 })
