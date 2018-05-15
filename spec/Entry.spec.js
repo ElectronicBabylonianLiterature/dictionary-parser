@@ -200,6 +200,15 @@ describe('Entry', () => {
           expect(entry.isLink).toEqual(true)
         })
       })
+
+      describe('with multiple lemmas', () => {
+        const row = '**source**, **source2** *cf.* *target*'
+        const entry = new Entry(row)
+
+        it('is link', () => {
+          expect(entry.isLink).toEqual(true)
+        })
+      })
     })
   })
 })
