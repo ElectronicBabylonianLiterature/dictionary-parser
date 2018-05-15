@@ -32,6 +32,7 @@ describe('Entry', () => {
     '\'definition\'',
     '(definition)',
     '**\\~** definition',
+    'mng. unkn. definition',
     ''
   ]
 
