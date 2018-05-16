@@ -142,6 +142,19 @@ describe('Entry', () => {
       })
     })
 
+    describe('semicolon after emma', () => {
+      const row = '**lemma**; definition'
+      const entry = new Entry(row)
+
+      it('parses lemma correctly', () => {
+        expect(entry.lemma).toEqual('lemma')
+      })
+
+      it('parses definition correctly', () => {
+        expect(entry.definition).toEqual('definition')
+      })
+    })
+
     describe('links', () => {
       describe('plain', () => {
         const row = '**\\*source** *cf.* *target*'
