@@ -33,6 +33,7 @@ describe('Entry', () => {
     '(definition)',
     'definition',
     '? "definition"',
+    '\\~ "definition"',
     ''
   ]
 
