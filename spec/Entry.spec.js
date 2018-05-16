@@ -106,19 +106,6 @@ describe('Entry', () => {
   }
 
   describe('special cases', () => {
-    describe('lemma and tilde with shared bold', () => {
-      const row = '**lemma \\~** "definition"'
-      const entry = new Entry(row)
-
-      it('parses lemma correctly', () => {
-        expect(entry.lemma).toEqual('lemma')
-      })
-
-      it('parses definition correctly', () => {
-        expect(entry.definition).toEqual('"definition"')
-      })
-    })
-
     describe('derived after derived from', () => {
       const row = '**lemma** "definition"; \\< *derivedFrom*; \\> *derived*'
       const entry = new Entry(row)
