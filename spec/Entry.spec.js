@@ -31,7 +31,6 @@ describe('Entry', () => {
     '"definition1, definition2" *italic* "definition3"',
     '\'definition\'',
     '(definition)',
-    '**\\~** definition',
     'mng. something. definition',
     ''
   ]
@@ -40,7 +39,8 @@ describe('Entry', () => {
     '',
     ' **1.** conjugation;',
     ' **G** conjugation;',
-    ' **A.** conjugation;'
+    ' **A.** conjugation;',
+    ' **\\~** conjugation'
   ]
 
   const derivedExamples = [
