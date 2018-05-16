@@ -11,10 +11,10 @@ describe('Entry', () => {
   const Entry = require('../lib/Entry')
 
   const lemmaExamples = [
-    ['**lemma**', 'lemma'],
-    ['***lemma***', 'lemma'],
-    ['**\\*lemma**', '*lemma'],
-    ['***\\*lemma***', '*lemma']
+    ['**lemma**', ['lemma']],
+    ['***lemma***', ['lemma']],
+    ['***\\*lemma***', ['*lemma']],
+    ['**lemma \\*lemma**', ['lemma', '*lemma']]
   ]
 
   const homonymExamples = [
@@ -148,7 +148,7 @@ describe('Entry', () => {
       const entry = new Entry(row)
 
       it('parses lemma correctly', () => {
-        expect(entry.lemma).toEqual('lemma')
+        expect(entry.lemma).toEqual(['lemma'])
       })
 
       it('parses definition correctly', () => {
