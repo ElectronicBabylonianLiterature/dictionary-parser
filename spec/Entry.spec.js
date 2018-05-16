@@ -32,6 +32,15 @@ describe('Entry', () => {
     '\'definition\'',
     '(definition)',
     'mng. something. definition',
+    'f. definition',
+    'm. definition',
+    'pl. definition',
+    'sg. definition',
+    'in definition',
+    'Bab. definition',
+    'jB definition',
+    'O/jB definition',
+    'OB definition',
     ''
   ]
 
