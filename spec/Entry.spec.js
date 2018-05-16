@@ -184,6 +184,15 @@ describe('Entry', () => {
         })
       })
 
+      describe('without italics', () => {
+        const row = '**\\*source** *cf.* *target'
+        const entry = new Entry(row)
+
+        it('is link', () => {
+          expect(entry.isLink).toEqual(true)
+        })
+      })
+
       describe('with extra information', () => {
         const row = '**source** *cf.* *target* extra'
         const entry = new Entry(row)
@@ -204,6 +213,15 @@ describe('Entry', () => {
 
       describe('with multiple lemmas', () => {
         const row = '**source**, **source2** *cf.* *target*'
+        const entry = new Entry(row)
+
+        it('is link', () => {
+          expect(entry.isLink).toEqual(true)
+        })
+      })
+
+      describe('with multiple lemmas without commas', () => {
+        const row = '**source1** **source2** *cf.* *target*'
         const entry = new Entry(row)
 
         it('is link', () => {
