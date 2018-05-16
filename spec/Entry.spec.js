@@ -175,15 +175,6 @@ describe('Entry', () => {
         })
       })
 
-      describe('with shared italics', () => {
-        const row = '**source** *cf. target*'
-        const entry = new Entry(row)
-
-        it('is link', () => {
-          expect(entry.isLink).toEqual(true)
-        })
-      })
-
       describe('without italics', () => {
         const row = '**\\*source** *cf.* *target'
         const entry = new Entry(row)
