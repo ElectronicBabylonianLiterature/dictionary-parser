@@ -27,13 +27,13 @@ describe('Entry', () => {
     ', *form1*, note *form2*; \\**form3*'
   ]
 
-  const definitionExamples = [
-    '"definition1, definition2" *italic* "definition3"',
-    '\'definition\'',
-    '(definition)',
-    'definition',
-    '? "definition"',
-    '\\~ "definition"',
+  const meaningExamples = [
+    '"meaning1, meaning2" *italic* "meaning3"',
+    '\'meaning\'',
+    '(meaning)',
+    'meaning',
+    '? "meaning"',
+    '\\~ "meaning"',
     ''
   ]
 
@@ -54,16 +54,16 @@ describe('Entry', () => {
     [' \\< *derivedFrom*', 'derivedFrom']
   ]
 
-  for (const [lemma, homonym, forms, definition, conjugations, derived, derivedFrom] of cartesian(
+  for (const [lemma, homonym, forms, meaning, conjugations, derived, derivedFrom] of cartesian(
     lemmaExamples,
     homonymExamples,
     formExamples,
-    definitionExamples,
+    meaningExamples,
     conjugationExamples,
     derivedExamples,
     derivedFromExamples
   )) {
-    const row = `${lemma[0]}${homonym[0]}${forms} ${definition}${conjugations}${derived}${derivedFrom[0]}`
+    const row = `${lemma[0]}${homonym[0]}${forms} ${meaning}${conjugations}${derived}${derivedFrom[0]}`
 
     describe(`row is: ${row}`, () => {
       const entry = new Entry(row)
@@ -80,8 +80,8 @@ describe('Entry', () => {
         expect(entry.forms).toEqual(parseForms(forms))
       })
 
-      it('parses definition correctly', () => {
-        expect(entry.definition).toEqual(definition)
+      it('parses meaning correctly', () => {
+        expect(entry.meaning).toEqual(meaning)
       })
 
       it('parses conjugations correctly', () => {
@@ -108,7 +108,7 @@ describe('Entry', () => {
 
   describe('special cases', () => {
     describe('derived after derived from', () => {
-      const row = '**lemma** "definition"; \\< *derivedFrom*; \\> *derived*'
+      const row = '**lemma** "meaning"; \\< *derivedFrom*; \\> *derived*'
       const entry = new Entry(row)
 
       it('parses derived correctly', () => {
@@ -134,8 +134,8 @@ describe('Entry', () => {
         ])
       })
 
-      it('parses definition correctly', () => {
-        expect(entry.definition).toEqual('')
+      it('parses meaning correctly', () => {
+        expect(entry.meaning).toEqual('')
       })
 
       it('parses conjugations correctly', () => {
@@ -144,15 +144,15 @@ describe('Entry', () => {
     })
 
     describe('semicolon after emma', () => {
-      const row = '**lemma**; definition'
+      const row = '**lemma**; meaning'
       const entry = new Entry(row)
 
       it('parses lemma correctly', () => {
         expect(entry.lemma).toEqual(['lemma'])
       })
 
-      it('parses definition correctly', () => {
-        expect(entry.definition).toEqual('definition')
+      it('parses meaning correctly', () => {
+        expect(entry.meaning).toEqual('meaning')
       })
     })
 
