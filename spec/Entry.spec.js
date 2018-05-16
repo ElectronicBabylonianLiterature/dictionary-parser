@@ -40,8 +40,7 @@ describe('Entry', () => {
     '',
     ' **1.** conjugation;',
     ' **G** conjugation;',
-    ' **A.** conjugation;',
-    ' **\\~** conjugation'
+    ' **A.** conjugation;'
   ]
 
   const derivedExamples = [
