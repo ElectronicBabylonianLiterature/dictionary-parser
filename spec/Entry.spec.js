@@ -1,5 +1,6 @@
 const parseForms = require('../lib/parseForms')
 const parseDerived = require('../lib/parseDerived')
+const parseNestedMeanings = require('../lib/parseNestedMeanings')
 
 function * cartesian (head, ...tail) {
   // From https://stackoverflow.com/a/44344803
@@ -37,11 +38,10 @@ describe('Entry', () => {
     ''
   ]
 
-  const conjugationExamples = [
+  const nestedMeaningsExamples = [
     '',
-    ' **1.** conjugation;',
-    ' **G** conjugation;',
-    ' **A.** conjugation;'
+    ' **1.** "meaning1; meaning2" **2.** meaning;',
+    ' **G** meaning **D**  "meaning1; meaning2" **1.** meaning **2.** meaning **D** **1.** meaning;'
   ]
 
   const derivedExamples = [
@@ -54,16 +54,16 @@ describe('Entry', () => {
     [' \\< *derivedFrom*', 'derivedFrom']
   ]
 
-  for (const [lemma, homonym, forms, meaning, conjugations, derived, derivedFrom] of cartesian(
+  for (const [lemma, homonym, forms, meaning, nestedMeanings, derived, derivedFrom] of cartesian(
     lemmaExamples,
     homonymExamples,
     formExamples,
     meaningExamples,
-    conjugationExamples,
+    nestedMeaningsExamples,
     derivedExamples,
     derivedFromExamples
   )) {
-    const row = `${lemma[0]}${homonym[0]}${forms} ${meaning}${conjugations}${derived}${derivedFrom[0]}`
+    const row = `${lemma[0]}${homonym[0]}${forms} ${meaning}${nestedMeanings}${derived}${derivedFrom[0]}`
 
     describe(`row is: ${row}`, () => {
       const entry = new Entry(row)
@@ -84,8 +84,8 @@ describe('Entry', () => {
         expect(entry.meaning).toEqual(meaning)
       })
 
-      it('parses conjugations correctly', () => {
-        expect(entry.conjugations).toEqual(conjugations)
+      it('parses nested meanings correctly', () => {
+        expect(entry.nestedMeanings).toEqual(parseNestedMeanings(nestedMeanings))
       })
 
       it('parses derived correctly', () => {
@@ -121,25 +121,6 @@ describe('Entry', () => {
 
       it('parses derived from correctly', () => {
         expect(entry.derivedFrom).toEqual('derivedFrom')
-      })
-    })
-
-    describe('meanig only in conjugation', () => {
-      const row = '**lemma**, *form* **1.** conjugation "meaning1, meaning2";'
-      const entry = new Entry(row)
-
-      it('parses forms correctly', () => {
-        expect(entry.forms).toEqual([
-          {lemma: 'form', notes: []}
-        ])
-      })
-
-      it('parses meaning correctly', () => {
-        expect(entry.meaning).toEqual('')
-      })
-
-      it('parses conjugations correctly', () => {
-        expect(entry.conjugations).toEqual(' **1.** conjugation "meaning1, meaning2";')
       })
     })
 
