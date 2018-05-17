@@ -7,23 +7,52 @@
 
 A script which transforms a dictionary from markdown to JSON.
 
-The dictionary entries are is expected to be in the format: `**<lemma>** <optional homonym><optional forms after a comma> <description starting with ", (, or **\~**><optinal derived starting with \>>` which will be parsed to:
+The dictionary entries are is expected to be in the format: `**<lemma>** <optional homonym><optional forms after a comma> <meaning><optional nested meanings of fucntions or confugations><optinal derived starting with \>>` which will be parsed to:
 ```
 {
   "lemma": "<lemma with mardown removed>",
   "homonym: "<homonym or I if not specified>",
   "forms": <array of forms or an empty array if none specified>,
-  "definition": "<definition>,
+  "meaning": "<meaning>",
+  "nestedMeanings": <nested meadings or an empty object of not specified>
   "derived": <array of derived words or an empty empty array if none specified>,
   "source": "<the original row>"
 }
 ```
+
+Conjugation identfiers are: `G`, `Gtn`, `Gt`, `D`, `Dtn`, `Dt`, `Dtt`, `Š`, `Štn`, `Št`, `ŠD`, `N`, `Ntn`, `R`.
+
+Function identifiers are: `A.`, `B.`,  `C.`, ...
+
+Entry identifiers are: `1.`, `2.`,  `3.`, ...
+
+In the markdown the identifiers are bolded, e.g. `**G**`.
 
 ```
 Forms have the following structure:
 {
   "lemma": "<lemma with mardown removed>",
   "notes": <an array of extra information>
+}
+```
+
+```
+Nested meanings have the following structure:
+{
+  "implicit": <a map of entries if no top level identifier was specified>,
+  "<function or conjugation identifier>": <a map of entries>,
+  "<function or conjugation identifier>": <a map of entries>,
+  ...
+}
+```
+
+Entries have the following structure:
+```
+{
+  "meaning": "<a common meaning of function or conjugation if specified>"
+  "<entry id>": "<meaning>",
+  "<entry id>": "<meaning>",
+  ...
 }
 ```
 
