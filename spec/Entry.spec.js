@@ -15,9 +15,6 @@ describe('Entry', () => {
   const Entry = require('../lib/Entry')
 
   const lemmaExamples = [
-    ['**lemma**', ['lemma']],
-    ['***lemma***', ['lemma']],
-    ['***\\*lemma***', ['*lemma']],
     ['**lemma \\*lemma**', ['lemma', '*lemma']]
   ]
 
