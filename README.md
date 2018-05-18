@@ -7,7 +7,7 @@
 
 A script which transforms a dictionary from markdown to JSON.
 
-The dictionary entries are is expected to be in the format: `**<lemma>** <optional homonym><optional forms after a comma> <meaning><optional nested meanings of fucntions or confugations><optinal derived starting with \>>` which will be parsed to:
+The dictionary entries are is expected to be in the format: `**<lemma>** <optional homonym><optional forms after a comma> <meaning><optional nested meanings of fucntions or confugations><optinal derived starting with \>><optinal derived from starting with \<>` which will be parsed to:
 ```
 {
   "lemma": "<lemma with mardown removed>",
@@ -16,6 +16,7 @@ The dictionary entries are is expected to be in the format: `**<lemma>** <option
   "meaning": "<meaning>",
   "nestedMeanings": <nested meadings or an empty object of not specified>
   "derived": <array of derived words or an empty empty array if none specified>,
+  "derivedFrom": "<derived from or null is not specified>",
   "source": "<the original row>"
 }
 ```
