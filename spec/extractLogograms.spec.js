@@ -20,4 +20,8 @@ describe('extractLogograms', () => {
   it('parses an alternate logograms', () => {
     expect(extractLogograms('some text \\[ŠITIM; NA LÚ.DIN\\] some more text')).toEqual([['ŠITIM'], ['NA', 'LÚ.DIN']])
   })
+
+  it('parses a logogram wit note', () => {
+    expect(extractLogograms('some text \\[note. LÚ.DIN\\] some more text')).toEqual([['note. LÚ.DIN']])
+  })
 })

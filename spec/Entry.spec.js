@@ -1,6 +1,9 @@
+const _ = require('lodash')
+
 const parseForms = require('../lib/parseForms')
 const parseDerived = require('../lib/parseDerived')
 const parseAmplifiedMeanings = require('../lib/parseAmplifiedMeanings')
+const extractLogograms = require('../lib/extractLogograms')
 
 function * cartesian (head, ...tail) {
   // From https://stackoverflow.com/a/44344803
@@ -105,6 +108,22 @@ describe('Entry', () => {
       })
     })
   }
+
+  describe('logograms', () => {
+    const meaning = '"meaning" \\[NA LÚ.DIN\\]'
+    const conjugation = ' meaning \\[LÚ.DIN\\]'
+    const conjugationEntry = '\\[ŠITIM; NA LÚ.DIN\\]'
+    const row = `**lemma** ${meaning} **G** ${conjugation} **1.** no logograms **2.** ${conjugationEntry}`
+    const entry = new Entry(row)
+
+    it('extracts logograms from meaning and amplified meanings', () => {
+      expect(entry.logograms).toEqual(_.concat(
+        extractLogograms(meaning),
+        extractLogograms(conjugation),
+        extractLogograms(conjugationEntry)
+      ))
+    })
+  })
 
   describe('special cases', () => {
     describe('derived after derived from', () => {
