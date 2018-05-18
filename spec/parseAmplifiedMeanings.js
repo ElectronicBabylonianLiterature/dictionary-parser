@@ -9,13 +9,13 @@ const examples = [
   [' **1.** MB, NB (meaning) **2.** meaning', {implicit: {'1.': 'MB, NB (meaning)', '2.': 'meaning'}}]
 ]
 
-describe('parseNestedMeanings', () => {
-  const parseNestedMeanings = require('../lib/parseNestedMeanings')
+describe('parseAmplifiedMeanings', () => {
+  const parseAmplifiedMeanings = require('../lib/parseAmplifiedMeanings')
 
   examples.forEach(([nestedMeaning, expected]) => {
     describe(nestedMeaning, () => {
       it('parses correctly', () => {
-        expect(parseNestedMeanings(nestedMeaning)).toEqual(expected)
+        expect(parseAmplifiedMeanings(nestedMeaning)).toEqual(expected)
       })
     })
   })

@@ -1,6 +1,6 @@
 const parseForms = require('../lib/parseForms')
 const parseDerived = require('../lib/parseDerived')
-const parseNestedMeanings = require('../lib/parseNestedMeanings')
+const parseAmplifiedMeanings = require('../lib/parseAmplifiedMeanings')
 
 function * cartesian (head, ...tail) {
   // From https://stackoverflow.com/a/44344803
@@ -38,7 +38,7 @@ describe('Entry', () => {
     ''
   ]
 
-  const nestedMeaningsExamples = [
+  const amplifiedMeaningsExamples = [
     '',
     ' **1.** "meaning1; meaning2" **2.** meaning;',
     ' **G** meaning **D**  "meaning1; meaning2" **1.** meaning **2.** meaning **D** **1.** meaning;'
@@ -54,16 +54,16 @@ describe('Entry', () => {
     [' \\< *derivedFrom*', 'derivedFrom']
   ]
 
-  for (const [lemma, homonym, forms, meaning, nestedMeanings, derived, derivedFrom] of cartesian(
+  for (const [lemma, homonym, forms, meaning, amplifiedMeanings, derived, derivedFrom] of cartesian(
     lemmaExamples,
     homonymExamples,
     formExamples,
     meaningExamples,
-    nestedMeaningsExamples,
+    amplifiedMeaningsExamples,
     derivedExamples,
     derivedFromExamples
   )) {
-    const row = `${lemma[0]}${homonym[0]}${forms} ${meaning}${nestedMeanings}${derived}${derivedFrom[0]}`
+    const row = `${lemma[0]}${homonym[0]}${forms} ${meaning}${amplifiedMeanings}${derived}${derivedFrom[0]}`
 
     describe(`row is: ${row}`, () => {
       const entry = new Entry(row)
@@ -84,8 +84,8 @@ describe('Entry', () => {
         expect(entry.meaning).toEqual(meaning)
       })
 
-      it('parses nested meanings correctly', () => {
-        expect(entry.nestedMeanings).toEqual(parseNestedMeanings(nestedMeanings))
+      it('parses amplified meanings correctly', () => {
+        expect(entry.amplifiedMeanings).toEqual(parseAmplifiedMeanings(amplifiedMeanings))
       })
 
       it('parses derived correctly', () => {
