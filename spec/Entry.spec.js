@@ -35,6 +35,7 @@ describe('Entry', () => {
     'meaning',
     '? "meaning"',
     '\\~ "meaning"',
+    '\\[FOO]\\]"',
     ''
   ]
 
