@@ -14,7 +14,8 @@ The dictionary entries are is expected to be in the format: `**<lemma>** <option
   "homonym: "<homonym or I if not specified>",
   "forms": <array of forms or an empty array if none specified>,
   "meaning": "<meaning>",
-  "nestedMeanings": <nested meadings or an empty object of not specified>
+  "amplifiedMeanings": <amplified meadings or an empty object of not specified>,
+  "logograms": <nested array of logograms extracted from meaning and amplified meanings>,
   "derived": <array of derived words or an empty empty array if none specified>,
   "derivedFrom": "<derived from or null is not specified>",
   "source": "<the original row>"
@@ -29,6 +30,8 @@ Entry identifiers are: `1.`, `2.`,  `3.`, ...
 
 In the markdown the identifiers are bolded, e.g. `**G**`.
 
+Logograms are identified by `\[` and `\]`.
+
 ```
 Forms have the following structure:
 {
@@ -38,7 +41,7 @@ Forms have the following structure:
 ```
 
 ```
-Nested meanings have the following structure:
+Amplified meanings have the following structure:
 {
   "implicit": <a map of entries if no top level identifier was specified>,
   "<function or conjugation identifier>": <a map of entries>,
