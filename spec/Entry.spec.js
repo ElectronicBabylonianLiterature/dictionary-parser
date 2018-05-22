@@ -123,7 +123,7 @@ describe('Entry', () => {
     })
   })
 
-  describe('lemma mimation', () => {
+  describe('lemma alternatives', () => {
     const row = `**(l)emma1 lemma(2)**, *form* "meaning"`
     const entry = new Entry(row)
 
