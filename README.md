@@ -1,6 +1,6 @@
 # dictionary-parser
 
-[ ![Codeship Status for ElectronicBabylonianLiterature/dictionary-parser](https://app.codeship.com/projects/b1517250-34cc-0136-b3a0-0a4605642058/status?branch=master)](https://app.codeship.com/projects/289131)
+[![Codeship Status for ElectronicBabylonianLiterature/dictionary-parser](https://app.codeship.com/projects/b1517250-34cc-0136-b3a0-0a4605642058/status?branch=master)](https://app.codeship.com/projects/289131)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/abcdddb5856e9c92135d/test_coverage)](https://codeclimate.com/github/ElectronicBabylonianLiterature/dictionary-parser/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/abcdddb5856e9c92135d/maintainability)](https://codeclimate.com/github/ElectronicBabylonianLiterature/dictionary-parser/maintainability)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -15,7 +15,7 @@ The dictionary entries are is expected to be in the format: `**<lemma>** <option
   "forms": <array of forms or an empty array if none specified>,
   "meaning": "<meaning>",
   "amplifiedMeanings": <amplified meadings or an empty object of not specified>,
-  "logograms": <nested array of logograms extracted from meaning and amplified meanings>,
+  "logograms": <an array of logogram entries separated semicolons extracted from meaning and amplified meanings>,
   "derived": <array of derived words or an empty empty array if none specified>,
   "derivedFrom": "<derived from or null is not specified>",
   "source": "<the original row>"
@@ -32,16 +32,18 @@ In the markdown the identifiers are bolded, e.g. `**G**`.
 
 Logograms are identified by `\[` and `\]`.
 
-```
+
 Forms have the following structure:
+```
 {
   "lemma": "<lemma with mardown removed>",
   "notes": <an array of extra information>
 }
 ```
 
-```
+
 Amplified meanings have the following structure:
+```
 {
   "implicit": <a map of entries if no top level identifier was specified>,
   "<function or conjugation identifier>": <a map of entries>,
@@ -57,6 +59,14 @@ Entries have the following structure:
   "<entry id>": "<meaning>",
   "<entry id>": "<meaning>",
   ...
+}
+```
+
+Logograms entrries have the following structure:
+```
+{
+  "logogram": <an array of logogram values separated by spaces>,
+  "notes": <an array of extra information>
 }
 ```
 
