@@ -15,7 +15,7 @@ describe('Entry', () => {
   const Entry = require('../lib/Entry')
 
   const lemmaExamples = [
-    ['**lemma \\*lemma**', ['lemma', '*lemma']]
+    ['**lemma \\*lemma lem\\[ma\\]?**', ['lemma', '*lemma', 'lem[ma]?']]
   ]
 
   const homonymExamples = [
