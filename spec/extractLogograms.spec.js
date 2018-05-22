@@ -24,4 +24,8 @@ describe('extractLogograms', () => {
   it('parses a logogram wit note', () => {
     expect(extractLogograms('some text \\[note. LÚ.DIN\\] some more text')).toEqual([['note. LÚ.DIN']])
   })
+
+  it('parses a logogram with space within parenhesis', () => {
+    expect(extractLogograms('\\[ÌR(- )\\]')).toEqual([['ÌR(- )']])
+  })
 })
