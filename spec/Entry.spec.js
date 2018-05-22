@@ -123,6 +123,22 @@ describe('Entry', () => {
     })
   })
 
+  describe('lemma mimation', () => {
+    const row = `**(l)emma1 lemma(2)**, *form* "meaning"`
+    const entry = new Entry(row)
+
+    it('uses shortest form for lemma', () => {
+      expect(entry.lemma).toEqual(['emma1', 'lemma'])
+    })
+
+    it('add other forms to forms', () => {
+      expect(entry.forms).toEqual(jasmine.arrayContaining([
+        {form: 'lemma1', notes: []},
+        {form: 'lemma2', notes: []}
+      ]))
+    })
+  })
+
   describe('special cases', () => {
     describe('derived after derived from', () => {
       const row = '**lemma** "meaning"; \\< *derivedFrom*; \\> *derived*'
