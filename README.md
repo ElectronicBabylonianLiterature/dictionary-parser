@@ -65,7 +65,7 @@ Entries have the following structure:
 Logograms entrries have the following structure:
 ```
 {
-  "logogram": <an array of logogram values separated by spaces>,
+  "logogram": <an array of expanded logogram variations>,
   "notes": <an array of extra information>
 }
 ```
