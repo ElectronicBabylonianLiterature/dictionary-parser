@@ -38,6 +38,10 @@ describe('extractLogograms', () => {
   })
 
   it('parses a logogram with space within parenhesis', () => {
-    expect(extractLogograms('\\[ÌR(- )\\]')).toEqual([{logogram: ['ÌR(- )'], notes: []}])
+    expect(extractLogograms('\\[ÌR(- )\\]')).toEqual([{logogram: ['ÌR'], notes: []}, {logogram: ['ÌR-'], notes: []}])
+  })
+
+  it('expands parentheses', () => {
+    expect(extractLogograms('\\[note NA LÚ(.DIN)\\]')).toEqual(jasmine.arrayWithExactContents([{logogram: ['NA', 'LÚ'], notes: ['note']}, {logogram: ['NA', 'LÚ.DIN'], notes: ['note']}]))
   })
 })
