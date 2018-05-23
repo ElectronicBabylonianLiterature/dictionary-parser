@@ -4,6 +4,7 @@ const parseForms = require('../lib/parseForms')
 const parseDerived = require('../lib/parseDerived')
 const parseAmplifiedMeanings = require('../lib/parseAmplifiedMeanings')
 const extractLogograms = require('../lib/extractLogograms')
+const parseLemma = require('../lib/parseLemma')
 
 function * cartesian (head, ...tail) {
   // From https://stackoverflow.com/a/44344803
@@ -15,7 +16,7 @@ describe('Entry', () => {
   const Entry = require('../lib/Entry')
 
   const lemmaExamples = [
-    ['**lemma \\*lemma lem\\[ma\\]?**', ['lemma', '*lemma', 'lem[ma]?']]
+    'lemma \\*lemma lem\\[ma\\]?'
   ]
 
   const homonymExamples = [
@@ -64,13 +65,13 @@ describe('Entry', () => {
     derivedExamples,
     derivedFromExamples
   )) {
-    const row = `${lemma[0]}${homonym[0]}${forms} ${meaning}${amplifiedMeanings}${derived}${derivedFrom[0]}`
+    const row = `**${lemma}**${homonym[0]}${forms} ${meaning}${amplifiedMeanings}${derived}${derivedFrom[0]}`
 
     describe(`row is: ${row}`, () => {
       const entry = new Entry(row)
 
       it('parses lemma correctly', () => {
-        expect(entry.lemma).toEqual(lemma[1])
+        expect(entry.lemma).toEqual(parseLemma(lemma)[0])
       })
 
       it('parses homonym correctly', () => {
