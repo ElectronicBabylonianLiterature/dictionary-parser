@@ -1,3 +1,5 @@
+const parseLemma = require('../lib/parseLemma')
+
 describe('Link', () => {
   const Link = require('../lib/Link')
 
@@ -24,10 +26,11 @@ describe('Link', () => {
         expect(Link.isLink(row)).toEqual(false)
       })
     })
+  })
 
-    describe('lemma', () => {
-
-    })
+  it('parses lemma correctly', () => {
+    const lemma = 'lemma(1) \\*lemma\\[2]\\'
+    expect(new Link(`**${lemma}** *cf.* *target*`).lemmas).toEqual(parseLemma(lemma))
   })
 
   it('has source', () => {
