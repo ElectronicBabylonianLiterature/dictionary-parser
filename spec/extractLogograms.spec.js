@@ -17,16 +17,12 @@ describe('extractLogograms', () => {
     expect(extractLogograms('some text \\[LÚ.DIN\\] some more text')).toEqual([{logogram: ['LÚ.DIN'], notes: []}])
   })
 
-  it('parses a multiple logograms', () => {
-    expect(extractLogograms('some text \\[IR11 LÚ.DIN\\] some more text')).toEqual([{logogram: ['IR11', 'LÚ.DIN'], notes: []}])
-  })
-
-  it('parses a multiple logograms', () => {
-    expect(extractLogograms('some text \\[IR11 LÚ.DIN\\] some more text')).toEqual([{logogram: ['IR11', 'LÚ.DIN'], notes: []}])
+  it('parses a logogram with numbers', () => {
+    expect(extractLogograms('\\[IR11\\]')).toEqual([{logogram: ['IR11'], notes: []}])
   })
 
   it('parses an alternate logograms', () => {
-    expect(extractLogograms('some text \\[ŠITIM; IR11 LÚ.DIN\\] some more text')).toEqual([{logogram: ['ŠITIM'], notes: []}, {logogram: ['IR11', 'LÚ.DIN'], notes: []}])
+    expect(extractLogograms('some text \\[ŠITIM; LÚ.DIN\\] some more text')).toEqual([{logogram: ['ŠITIM'], notes: []}, {logogram: ['LÚ.DIN'], notes: []}])
   })
 
   it('parses a logogram with note', () => {
@@ -38,7 +34,7 @@ describe('extractLogograms', () => {
   })
 
   it('expands parentheses', () => {
-    expect(extractLogograms('\\[note NA LÚ(.DIN)\\]')).toEqual(jasmine.arrayWithExactContents([{logogram: ['NA', 'LÚ'], notes: ['note']}, {logogram: ['NA', 'LÚ.DIN'], notes: ['note']}]))
+    expect(extractLogograms('\\[note LÚ(.DIN)\\]')).toEqual(jasmine.arrayWithExactContents([{logogram: ['LÚ', 'LÚ.DIN'], notes: ['note']}]))
   })
 
   describe('periods of attestation', () => {
