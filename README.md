@@ -10,9 +10,9 @@ A script which transforms a dictionary from markdown to JSON.
 The dictionary entries are is expected to be in the format: `**<lemma>** <optional homonym><optional forms after a comma> <meaning><optional nested meanings of fucntions or confugations><optinal derived starting with \>><optinal derived from starting with \<>` which will be parsed to:
 ```
 {
-  "lemma": "<lemma with mardown removed>",
+  "lemma": "<lemma splitted to components with mardown removed>",
   "homonym: "<homonym or I if not specified>",
-  "forms": <array of forms or an empty array if none specified>,
+  "forms": <array of forms and expanded lemma or an empty array if none specified>,
   "meaning": "<meaning>",
   "amplifiedMeanings": <amplified meadings or an empty object of not specified>,
   "logograms": <an array of logogram entries separated semicolons extracted from meaning and amplified meanings>,
@@ -36,7 +36,7 @@ Logograms are identified by `\[` and `\]`.
 Forms have the following structure:
 ```
 {
-  "lemma": "<lemma with mardown removed>",
+  "lemma": "<lemma splitted to components with mardown removed>",
   "notes": <an array of extra information>
 }
 ```
