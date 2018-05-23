@@ -1,4 +1,5 @@
 const parseLemma = require('../lib/parseLemma')
+const parseDerived = require('../lib/parseDerived')
 
 describe('Link', () => {
   const Link = require('../lib/Link')
@@ -38,6 +39,11 @@ describe('Link', () => {
     const lemma1 = 'lemma(1) \\*lemma\\[2]\\'
     const lemma2 = 'lemma(a) \\*lemma\\[b]\\'
     expect(new Link(`**${lemma1}**, **${lemma2}** *cf.* *target*`).lemmas).toEqual(parseLemma(lemma1).concat(parseLemma(lemma2)))
+  })
+
+  it('parses target correctly', () => {
+    const target = '*target1* I.II; *target2* 3, *target3* note'
+    expect(new Link(`**lemma** *cf.* ${target}`).targets).toEqual(parseDerived(target))
   })
 
   it('has source', () => {
