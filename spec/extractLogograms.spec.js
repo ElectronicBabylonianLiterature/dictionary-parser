@@ -18,15 +18,15 @@ describe('extractLogograms', () => {
   })
 
   it('parses a multiple logograms', () => {
-    expect(extractLogograms('some text \\[NA LÚ.DIN\\] some more text')).toEqual([{logogram: ['NA', 'LÚ.DIN'], notes: []}])
+    expect(extractLogograms('some text \\[IR11 LÚ.DIN\\] some more text')).toEqual([{logogram: ['IR11', 'LÚ.DIN'], notes: []}])
   })
 
   it('parses a multiple logograms', () => {
-    expect(extractLogograms('some text \\[NA LÚ.DIN\\] some more text')).toEqual([{logogram: ['NA', 'LÚ.DIN'], notes: []}])
+    expect(extractLogograms('some text \\[IR11 LÚ.DIN\\] some more text')).toEqual([{logogram: ['IR11', 'LÚ.DIN'], notes: []}])
   })
 
   it('parses an alternate logograms', () => {
-    expect(extractLogograms('some text \\[ŠITIM; NA LÚ.DIN\\] some more text')).toEqual([{logogram: ['ŠITIM'], notes: []}, {logogram: ['NA', 'LÚ.DIN'], notes: []}])
+    expect(extractLogograms('some text \\[ŠITIM; IR11 LÚ.DIN\\] some more text')).toEqual([{logogram: ['ŠITIM'], notes: []}, {logogram: ['IR11', 'LÚ.DIN'], notes: []}])
   })
 
   it('parses a logogram with note', () => {
@@ -37,11 +37,15 @@ describe('extractLogograms', () => {
     expect(extractLogograms('\\[NB also NINDA.HI.A\\]')).toEqual([{logogram: ['NINDA.HI.A'], notes: ['NB also']}])
   })
 
-  it('parses a logogram with space within parenhesis', () => {
-    expect(extractLogograms('\\[ÌR(- )\\]')).toEqual([{logogram: ['ÌR'], notes: []}, {logogram: ['ÌR-'], notes: []}])
-  })
-
   it('expands parentheses', () => {
     expect(extractLogograms('\\[note NA LÚ(.DIN)\\]')).toEqual(jasmine.arrayWithExactContents([{logogram: ['NA', 'LÚ'], notes: ['note']}, {logogram: ['NA', 'LÚ.DIN'], notes: ['note']}]))
+  })
+
+  describe('periods of attestation', () => {
+    ['OB', 'MB', 'NB', 'OA', 'MA', 'NA'].forEach(period => {
+      it(`parses a logogram starting with ${period}`, () => {
+        expect(extractLogograms(`\\[${period} NINDA.HI.A\\]`)).toEqual([{logogram: ['NINDA.HI.A'], notes: [period]}])
+      })
+    })
   })
 })
