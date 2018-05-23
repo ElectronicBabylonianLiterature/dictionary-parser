@@ -12,4 +12,8 @@ describe('expandAlternatives', () => {
   it('returns the original if no parentheses', () => {
     expect(expandAlternatives('abc')).toEqual(['abc'])
   })
+
+  it('does not expand parantheses with ingored content', () => {
+    expect(expandAlternatives('a(bc)c', 'bc')).toEqual(['a(bc)c'])
+  })
 })

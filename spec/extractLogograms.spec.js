@@ -29,8 +29,8 @@ describe('extractLogograms', () => {
     expect(extractLogograms('\\[some. *lemma* Note LÚ.DIN Another. *cf.* note ?\\]')).toEqual([{logogram: ['LÚ.DIN'], notes: ['some. *lemma* Note', 'Another. *cf.* note ?']}])
   })
 
-  it('parses a logogram with note starting with capitals', () => {
-    expect(extractLogograms('\\[NB also NINDA.HI.A\\]')).toEqual([{logogram: ['NINDA.HI.A'], notes: ['NB also']}])
+  it('does not expand (- )', () => {
+    expect(extractLogograms('\\[ÌR(- )\\]')).toEqual([{logogram: ['ÌR(- )'], notes: []}])
   })
 
   it('expands parentheses', () => {
