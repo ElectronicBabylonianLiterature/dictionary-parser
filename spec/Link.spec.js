@@ -9,7 +9,7 @@ describe('Link', () => {
       '**source** *cf.* *target* extra',
       '**source** etc. *cf.* *target*',
       '**source**, **source2** *cf.* *target*',
-      '**source1** **source2** *cf.* *target*'
+      '**source1 source2** *cf.* *target* 5'
     ].forEach(row => {
       it(`${row} is a link`, () => {
         expect(Link.isLink(row)).toEqual(true)
@@ -23,6 +23,10 @@ describe('Link', () => {
       it(`${row} is not a link`, () => {
         expect(Link.isLink(row)).toEqual(false)
       })
+    })
+
+    describe('lemma', () => {
+
     })
   })
 
