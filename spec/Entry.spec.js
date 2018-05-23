@@ -100,10 +100,6 @@ describe('Entry', () => {
       it('sets source to original row', () => {
         expect(entry.source).toEqual(row)
       })
-
-      it('is not a link', () => {
-        expect(entry.isLink).toEqual(false)
-      })
     })
   }
 
@@ -176,80 +172,6 @@ describe('Entry', () => {
 
       it('parses meaning correctly', () => {
         expect(entry.meaning).toEqual('meaning')
-      })
-    })
-
-    describe('links', () => {
-      describe('plain', () => {
-        const row = '**\\*source** *cf.* *target*'
-        const entry = new Entry(row)
-
-        it('is link', () => {
-          expect(entry.isLink).toEqual(true)
-        })
-      })
-
-      describe('with note', () => {
-        const row = '**\\*source** *cf.* *target* note'
-        const entry = new Entry(row)
-
-        it('is link', () => {
-          expect(entry.isLink).toEqual(true)
-        })
-      })
-
-      describe('without italics', () => {
-        const row = '**\\*source** *cf.* *target'
-        const entry = new Entry(row)
-
-        it('is link', () => {
-          expect(entry.isLink).toEqual(true)
-        })
-      })
-
-      describe('with extra information', () => {
-        const row = '**source** *cf.* *target* extra'
-        const entry = new Entry(row)
-
-        it('is link', () => {
-          expect(entry.isLink).toEqual(true)
-        })
-      })
-
-      describe('with also', () => {
-        const row = '**source** *cf.* also *target*'
-        const entry = new Entry(row)
-
-        it('is link', () => {
-          expect(entry.isLink).toEqual(true)
-        })
-      })
-
-      describe('with multiple lemmas', () => {
-        const row = '**source**, **source2** *cf.* *target*'
-        const entry = new Entry(row)
-
-        it('is link', () => {
-          expect(entry.isLink).toEqual(true)
-        })
-      })
-
-      describe('with multiple lemmas without commas', () => {
-        const row = '**source1** **source2** *cf.* *target*'
-        const entry = new Entry(row)
-
-        it('is link', () => {
-          expect(entry.isLink).toEqual(true)
-        })
-      })
-
-      describe('with etc. befofe *cf.*', () => {
-        const row = '**source** etc. *cf.* *target*'
-        const entry = new Entry(row)
-
-        it('is link', () => {
-          expect(entry.isLink).toEqual(true)
-        })
       })
     })
   })
