@@ -138,8 +138,9 @@ describe('Entry', () => {
 
     it('add other forms to forms', () => {
       expect(entry.forms).toEqual(jasmine.arrayContaining([
-        {form: 'lemma1', notes: []},
-        {form: 'lemma2', notes: []}
+        {lemma: ['lemma1', 'lemma'], notes: []},
+        {lemma: ['emma1', 'lemma2'], notes: []},
+        {lemma: ['lemma1', 'lemma2'], notes: []}
       ]))
     })
   })
