@@ -108,17 +108,26 @@ describe('Entry', () => {
   }
 
   describe('logograms', () => {
-    const meaning = '"meaning" \\[NA LÚ.DIN\\]'
-    const conjugation = ' meaning \\[LÚ.DIN\\]'
-    const conjugationEntry = '\\[ŠITIM; NA LÚ.DIN\\]'
-    const row = `**lemma** ${meaning} **G** ${conjugation} **1.** no logograms **2.** ${conjugationEntry}`
-    const entry = new Entry(row)
-
     it('extracts logograms from meaning and amplified meanings', () => {
+      const meaning = '"meaning" \\[NA LÚ.DIN\\]'
+      const conjugation = ' meaning \\[LÚ.DIN\\]'
+      const conjugationEntry = '\\[ŠITIM; NA LÚ(.DIN)\\]'
+      const row = `**lemma** ${meaning} **G** ${conjugation} **1.** no logograms **2.** ${conjugationEntry}`
+      const entry = new Entry(row)
+
       expect(entry.logograms).toEqual(_.concat(
         extractLogograms(meaning),
         extractLogograms(conjugation),
         extractLogograms(conjugationEntry)
+      ))
+    })
+
+    it('remove exact duplicates', () => {
+      const row = '**lemma** \\[LOG\\] **G** \\[LOG\\] **1.** \\[NB LOG\\]'
+      const entry = new Entry(row)
+      expect(entry.logograms).toEqual(_.concat(
+        extractLogograms('\\[LOG\\]'),
+        extractLogograms('\\[NB LOG\\]')
       ))
     })
   })
