@@ -153,7 +153,7 @@ describe('Entry', () => {
 
       it('parses derived correctly', () => {
         expect(entry.derived).toEqual([[{
-          lemma: 'derived',
+          lemma: ['derived'],
           homonym: 'I',
           notes: []
         }]])
