@@ -176,5 +176,18 @@ describe('Entry', () => {
         expect(entry.meaning).toEqual('meaning')
       })
     })
+
+    describe('link like', () => {
+      const row = '**lemma** *cf.* "meaning" jB; \\< *derived*'
+      const entry = new Entry(row)
+
+      it('parses lemma correctly', () => {
+        expect(entry.lemma).toEqual(['lemma'])
+      })
+
+      it('parses meaning correctly', () => {
+        expect(entry.meaning).toEqual('*cf.* "meaning" jB;')
+      })
+    })
   })
 })
