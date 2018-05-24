@@ -51,4 +51,62 @@ describe('Link', () => {
   it('has source', () => {
     expect(new Link('source').source).toEqual('source')
   })
+
+  describe('toDerivedForms', () => {
+    it('creates correct value', () => {
+      const link = new Link(`**lemma** *cf.* preNotes *target* postNotes`)
+      expect(link.toDerivedForms()).toEqual([
+        jasmine.objectContaining({value: {lemma: ['lemma'], homonym: 'I', notes: ['preNotes', 'postNotes'], source: link.source}})
+      ])
+    })
+
+    it('creates correct key', () => {
+      expect(new Link(`**lemma** *cf.* *target*`).toDerivedForms()).toEqual([
+        jasmine.objectContaining({key: {lemma: ['target'], homonym: 'I'}})
+      ])
+    })
+
+    it('creates entry for each target', () => {
+      expect(new Link(`**lemma** *cf.* *target1*, *target2*`).toDerivedForms()).toEqual([
+        jasmine.objectContaining({key: {lemma: ['target1'], homonym: 'I'}}),
+        jasmine.objectContaining({key: {lemma: ['target2'], homonym: 'I'}})
+      ])
+    })
+
+    it('creates entry for each homonym', () => {
+      expect(new Link(`**lemma** *cf.* *target* II.III`).toDerivedForms()).toEqual([
+        jasmine.objectContaining({key: {lemma: ['target'], homonym: 'II'}}),
+        jasmine.objectContaining({key: {lemma: ['target'], homonym: 'III'}})
+      ])
+    })
+
+    it('creates correct key for compound lemma', () => {
+      expect(new Link(`**lemma** *cf.* *part1 part2*`).toDerivedForms()).toEqual([
+        jasmine.objectContaining({key: {lemma: ['part1', 'part2'], homonym: 'I'}})
+      ])
+    })
+
+    it('creates entry for each lemma', () => {
+      const link = new Link(`**lemma1**, **lemma2** *cf.* *target*`)
+      expect(link.toDerivedForms()).toEqual([
+        jasmine.objectContaining({value: {lemma: ['lemma1'], homonym: 'I', notes: [], source: link.source}}),
+        jasmine.objectContaining({value: {lemma: ['lemma2'], homonym: 'I', notes: [], source: link.source}})
+      ])
+    })
+
+    it('creates correct value for each compound lemma', () => {
+      const link = new Link(`**part1 part2** *cf.* *target*`)
+      expect(link.toDerivedForms()).toEqual([
+        jasmine.objectContaining({value: {lemma: ['part1', 'part2'], homonym: 'I', notes: [], source: link.source}})
+      ])
+    })
+
+    it('creates correct value for each expanded lemma', () => {
+      const link = new Link(`**lemm(a)** *cf.* *target*`)
+      expect(link.toDerivedForms()).toEqual([
+        jasmine.objectContaining({value: {lemma: ['lemm'], homonym: 'I', notes: [], source: link.source}}),
+        jasmine.objectContaining({value: {lemma: ['lemma'], homonym: 'I', notes: [], source: link.source}})
+      ])
+    })
+  })
 })
