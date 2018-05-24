@@ -7,20 +7,9 @@
 
 A script which transforms a dictionary from markdown to JSON.
 
-The dictionary entries are is expected to be in the format: `**<lemma>** <optional homonym><optional forms after a comma> <meaning><optional nested meanings of fucntions or confugations><optinal derived starting with \>><optinal derived from starting with \<>` which will be parsed to:
-```
-{
-  "lemma": "<lemma splitted to components with mardown removed>",
-  "homonym: "<homonym or I if not specified>",
-  "forms": <array of forms and expanded lemma or an empty array if none specified>,
-  "meaning": "<meaning>",
-  "amplifiedMeanings": <amplified meadings or an empty object of not specified>,
-  "logograms": <an array of logogram entries separated semicolons extracted from meaning and amplified meanings>,
-  "derived": <array of derived words or an empty empty array if none specified>,
-  "derivedFrom": "<derived from or null is not specified>",
-  "source": "<the original row>"
-}
-```
+## Input
+
+The dictionary is a markdown file with rows containing an entry `**<lemma>** <optional homonym><optional forms after a comma> <meaning><optional nested meanings of fucntions or confugations><optinal derived starting with \>><optinal derived from starting with \<>` or a link `<comma separated list of lemmata marked with **> <optionak etc.> \*cf.\* <list lemmata similar to derived forms>`. Empty lines are ignored.
 
 Conjugation identfiers are: `G`, `Gtn`, `Gt`, `D`, `Dtn`, `Dt`, `Dtt`, `Š`, `Štn`, `Št`, `ŠD`, `N`, `Ntn`, `R`.
 
@@ -33,6 +22,24 @@ In the markdown the identifiers are bolded, e.g. `**G**`.
 Logograms are identified by `\[` and `\]`.
 
 
+## Output
+
+The dictionary is parsed to a JSON file containing an array of entries:
+```
+{
+  "lemma": "<lemma splitted to components with mardown and * removed>",
+  "attested": <false is lemma starts with *, true otherwise>
+  "homonym: "<homonym or I if not specified>",
+  "forms": <array of forms and expanded lemma or an empty array if none specified>,
+  "meaning": "<meaning>",
+  "amplifiedMeanings": <amplified meadings or an empty object of not specified>,
+  "logograms": <an array of logogram entries separated semicolons extracted from meaning and amplified meanings>,
+  "derived": <array of derived words or an empty empty array if none specified>,
+  "derivedFrom": "<derived from or null is not specified>",
+  "source": "<the original row>"
+}
+```
+
 Forms have the following structure:
 ```
 {
@@ -40,7 +47,6 @@ Forms have the following structure:
   "notes": <an array of extra information>
 }
 ```
-
 
 Amplified meanings have the following structure:
 ```
@@ -75,6 +81,17 @@ Derived words have the following structure:
 {
   "lemma": "<lemma with mardown removed>",
   "homonym: "<homonym or I if not specified>,
-  "notes": <an array of extra information e.g. cf. or ?>
+  "notes": <an array of extra information e.g. cf. or ?>,
+  "source": <if entry was created due to a link the original row of the link>
 }
 ```
+
+## Link merging
+
+Lemmata from links are added as derived forms to words defined by the list after `\*cf.*\`. The derived from will use the notes from the link and has additional `source` property containing the original row of the link.
+
+## Lemma expansion rules
+
+* A lemma with parentheses is expanded to a lemma without and a lemma with the contents of the parenteses. E.g. `malû(m)` -> `malû` and `malûm`.
+* A lemma ending with `-um` is expanded to two lemmata ending with `-u` and `-um`. E.g. `māmilūtum` -> `māmilūtu` and `māmilūtum`
+* In the case of multiple parentheses and/or `-um` all combinations are expanded.
