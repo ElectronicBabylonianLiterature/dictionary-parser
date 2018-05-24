@@ -24,6 +24,7 @@ describe('Link', () => {
       '**lemma** meaning; *cf.* *derived*',
       '**lemma** \\[LOG\\]; *cf.* *derived*',
       '**lemma** *cf.* "meaning" note; \\< *lemma*',
+      '**lemma** *cf.* "meaning" note; \\> *lemma*',
       '**lemma** *cf.* *form* I; *form* **lemma** I (meaning) notes, NA \\[LOG\\]'
     ].forEach(row => {
       it(`${row} is not a link`, () => {
