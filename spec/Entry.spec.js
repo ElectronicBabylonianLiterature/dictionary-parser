@@ -16,7 +16,7 @@ describe('Entry', () => {
   const Entry = require('../lib/Entry')
 
   const lemmaExamples = [
-    'lemma \\*lemma lem\\[ma\\]?'
+    'lemma lem\\[ma\\]?'
   ]
 
   const homonymExamples = [
@@ -72,6 +72,10 @@ describe('Entry', () => {
 
       it('parses lemma correctly', () => {
         expect(entry.lemma).toEqual(parseLemma(lemma)[0])
+      })
+
+      it('parses attested from correctly', () => {
+        expect(entry.attested).toEqual(true)
       })
 
       it('parses homonym correctly', () => {
@@ -147,6 +151,19 @@ describe('Entry', () => {
   })
 
   describe('special cases', () => {
+    describe('not attested', () => {
+      const row = '**\\*lemma** "meaning"'
+      const entry = new Entry(row)
+
+      it('parses lemma correctly', () => {
+        expect(entry.lemma).toEqual(['lemma'])
+      })
+
+      it('parses attested correctly', () => {
+        expect(entry.attested).toEqual(false)
+      })
+    })
+
     describe('derived after derived from', () => {
       const row = '**lemma** "meaning"; \\< *derivedFrom*; \\> *derived*'
       const entry = new Entry(row)
