@@ -190,4 +190,26 @@ describe('Entry', () => {
       })
     })
   })
+
+  describe('toPlainObject', () => {
+    const entry = new Entry('**lemma**, *form*, "meaning" **G** \\[LOG]] \\< derives \\> derived')
+
+    it('returns a plain object', () => {
+      expect(_.isPlainObject(entry.toPlainObject())).toBe(true)
+    })
+
+    it('returns correct properties', () => {
+      expect(entry.toPlainObject()).toEqual({
+        lemma: entry.lemma,
+        homonym: entry.homonym,
+        forms: entry.forms,
+        meaning: entry.meaning,
+        amplifiedMeanings: entry.amplifiedMeanings,
+        logograms: entry.logograms,
+        derived: entry.derived,
+        derivedFrom: entry.derivedFrom,
+        source: entry.source
+      })
+    })
+  })
 })
