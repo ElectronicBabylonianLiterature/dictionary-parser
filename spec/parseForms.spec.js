@@ -1,16 +1,16 @@
 const formExamples = [
   ['', []],
-  [', *form1*, *form2*', [{lemma: ['form1'], notes: []}, {lemma: ['form2'], notes: []}]],
-  [', *form1*', [{lemma: ['form1'], notes: []}]],
-  [', *form1*; *form2*', [{lemma: ['form1'], notes: []}, {lemma: ['form2'], notes: []}]],
-  [', note1 *form* note2', [{lemma: ['form'], notes: ['note1', 'note2']}]],
-  [', \\**form1*', [{lemma: ['*form1'], notes: []}]],
-  [', *form1 form2*', [{lemma: ['form1', 'form2'], notes: []}]],
+  [', *form1*, *form2*', [{lemma: ['form1'], attested: true, notes: []}, {lemma: ['form2'], attested: true, notes: []}]],
+  [', *form1*', [{lemma: ['form1'], attested: true, notes: []}]],
+  [', *form1*; *form2*', [{lemma: ['form1'], attested: true, notes: []}, {lemma: ['form2'], attested: true, notes: []}]],
+  [', note1 *form* note2', [{lemma: ['form'], attested: true, notes: ['note1', 'note2']}]],
+  [', \\**form1*', [{lemma: ['form1'], attested: false, notes: []}]],
+  [', *form1 form2*', [{lemma: ['form1', 'form2'], attested: true, notes: []}]],
   [', *form(1) form(2)* note', [
-    {lemma: ['form', 'form'], notes: ['note']},
-    {lemma: ['form1', 'form'], notes: ['note']},
-    {lemma: ['form', 'form2'], notes: ['note']},
-    {lemma: ['form1', 'form2'], notes: ['note']}
+    {lemma: ['form', 'form'], attested: true, notes: ['note']},
+    {lemma: ['form1', 'form'], attested: true, notes: ['note']},
+    {lemma: ['form', 'form2'], attested: true, notes: ['note']},
+    {lemma: ['form1', 'form2'], attested: true, notes: ['note']}
   ]]
 ]
 
