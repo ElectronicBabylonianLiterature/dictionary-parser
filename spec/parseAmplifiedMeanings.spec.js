@@ -7,7 +7,8 @@ const examples = [
   [' **A.** "meaning1; meaning2";', {'A.': {meaning: '"meaning1; meaning2"'}}],
   [' **A.** **1.** "meaning1; meaning2";', {'A.': {'1.': '"meaning1; meaning2"'}}],
   [' **1.** MB, NB (meaning) **2.** meaning', {implicit: {'1.': 'MB, NB (meaning)', '2.': 'meaning'}}],
-  [' **G** meaning (*u/a*)', {'G': {meaning: 'meaning (*u/a*)', vowels: ['u', 'a']}}]
+  [' **G** meaning (*u/a*)', {'G': {meaning: 'meaning (*u/a*)', vowels: [['u', 'a']]}}],
+  [' **G** meaning (*a/u*, *u/u*, *i/i*)', {'G': {meaning: 'meaning (*a/u*, *u/u*, *i/i*)', vowels: [['a', 'u'], ['u', 'u'], ['i', 'i']]}}]
   // [' **G** meaning (*a/u*, occas. *u/u*, *i/i*)', {'G': {meaning: 'meaning', vowels: ['u', 'a']}}],
   // [' **G** meaning (*a/u*; notes *lemma*)', {'G': {meaning: 'meaning', vowels: ['u', 'a']}}],
   // [' **G** meaning (*a/u*, notes *lemma*)', {'G': {meaning: 'meaning', vowels: ['u', 'a']}}]
