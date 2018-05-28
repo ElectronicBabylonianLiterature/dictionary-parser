@@ -20,6 +20,9 @@ const examples = [
   ['meaning (*a/u*, notes *lemma*)', [
     {value: ['a', 'u'], notes: []},
     {value: [], notes: ['notes *lemma*']}
+  ]],
+  ['meaning  (*i/i* \\< Aram.)', [
+    {value: ['i', 'i'], notes: ['\\< Aram.']}
   ]]
 ]
 
