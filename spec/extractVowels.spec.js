@@ -16,6 +16,10 @@ const examples = [
   ['meaning (*a/u*; notes *lemma*) \\[KU4(.RA)\\]', [
     {value: ['a', 'u'], notes: []},
     {value: [], notes: ['notes *lemma*']}
+  ]],
+  ['meaning (*a/u*, notes *lemma*)', [
+    {value: ['a', 'u'], notes: []},
+    {value: [], notes: ['notes *lemma*']}
   ]]
 ]
 
