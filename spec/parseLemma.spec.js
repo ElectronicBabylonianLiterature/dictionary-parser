@@ -20,4 +20,8 @@ describe('parseLemma', () => {
   it('parses compound lemmas', () => {
     expect(parseLemma('lemma1 lemma2')).toEqual([['lemma1', 'lemma2']])
   })
+
+  it('does not double expand -um', () => {
+    expect(parseLemma('lemmu(m)')).toEqual([['lemmu'], ['lemmum']])
+  })
 })
