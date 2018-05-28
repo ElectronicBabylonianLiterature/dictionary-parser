@@ -181,12 +181,29 @@ describe('Entry', () => {
       })
     })
 
-    describe('semicolon after emma', () => {
+    describe('semicolon after lemma', () => {
       const row = '**lemma**; meaning'
       const entry = new Entry(row)
 
       it('parses lemma correctly', () => {
         expect(entry.lemma).toEqual(['lemma'])
+      })
+
+      it('parses meaning correctly', () => {
+        expect(entry.meaning).toEqual('meaning')
+      })
+    })
+
+    describe('semicolon after homonym', () => {
+      const row = '**lemma** II; meaning'
+      const entry = new Entry(row)
+
+      it('parses lemma correctly', () => {
+        expect(entry.lemma).toEqual(['lemma'])
+      })
+
+      it('parses homonym correctly', () => {
+        expect(entry.homonym).toEqual('II')
       })
 
       it('parses meaning correctly', () => {
