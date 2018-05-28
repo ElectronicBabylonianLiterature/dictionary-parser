@@ -12,10 +12,11 @@ const examples = [
   ]],
   ['meaning (OB mostly *lemma1*, *lemma2*, *lemma3*, later Bab. *u/u*)', [
     {value: ['u', 'u'], notes: ['OB mostly *lemma1*, *lemma2*, *lemma3*, later Bab.']}
+  ]],
+  ['meaning (*a/u*; notes *lemma*) \\[KU4(.RA)\\]', [
+    {value: ['a', 'u'], notes: []},
+    {value: [], notes: ['notes *lemma*']}
   ]]
-  // ['meaning (*a/u*; notes *lemma*)', {'G': {meaning: 'meaning', vowels: ['u', 'a']}}],
-  // ['meaning (*a/u*, notes *lemma*)', {'G': {meaning: 'meaning', vowels: ['u', 'a']}}]
-  // ['meaning **1.** meaning (*u/a*)', {'G': {meaning: 'meaning', vowels: ['u', 'a']}}]
 ]
 
 describe('extractVowels', () => {
