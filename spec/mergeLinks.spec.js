@@ -4,12 +4,12 @@ const Entry = require('../lib/Entry')
 function expectDerivedToContainLink (merged, entry, link) {
   expect(merged).toEqual([{
     ...entry.toPlainObject(),
-    derived: [{
+    derived: [[{
       lemma: link.lemmas[0],
       homonym: 'I',
       notes: [],
       source: link.source
-    }]
+    }]]
   }])
 }
 

@@ -17,4 +17,9 @@ describe('parseDerived', () => {
       expect(parseDerived(derived[0])).toEqual(derived[1])
     })
   })
+
+  it('returns unparseable derived as is', () => {
+    const unparseable = 'not a correct derived'
+    expect(parseDerived(unparseable)).toEqual([[unparseable]])
+  })
 })
