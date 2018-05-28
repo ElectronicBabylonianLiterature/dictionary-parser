@@ -1,6 +1,18 @@
 const Link = require('../lib/Link')
 const Entry = require('../lib/Entry')
 
+function expectDerivedToContainLink (merged, entry, link) {
+  expect(merged).toEqual([{
+    ...entry.toPlainObject(),
+    derived: [{
+      lemma: link.lemmas[0],
+      homonym: 'I',
+      notes: [],
+      source: link.source
+    }]
+  }])
+}
+
 describe('mergeLinks', () => {
   const mergeLinks = require('../lib/mergeLinks')
 
@@ -10,15 +22,7 @@ describe('mergeLinks', () => {
 
     const merged = mergeLinks([matchingEntry], [link])
 
-    expect(merged).toEqual([{
-      ...matchingEntry.toPlainObject(),
-      derived: [{
-        lemma: ['link'],
-        homonym: 'I',
-        notes: [],
-        source: link.source
-      }]
-    }])
+    expectDerivedToContainLink(merged, matchingEntry, link)
   })
 
   it('does not adds links to non matching entries', () => {
@@ -36,14 +40,6 @@ describe('mergeLinks', () => {
 
     const merged = mergeLinks([matchingEntry], [link])
 
-    expect(merged).toEqual([{
-      ...matchingEntry.toPlainObject(),
-      derived: [{
-        lemma: ['link'],
-        homonym: 'I',
-        notes: [],
-        source: link.source
-      }]
-    }])
+    expectDerivedToContainLink(merged, matchingEntry, link)
   })
 })
