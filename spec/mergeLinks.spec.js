@@ -42,4 +42,13 @@ describe('mergeLinks', () => {
 
     expectDerivedToContainLink(merged, matchingEntry, link)
   })
+
+  it('ignores dash at end of lemma', () => {
+    const link = new Link('**link** *cf.* *matchinglemma*')
+    const matchingEntry = new Entry('**matchinglemma-** meaning')
+
+    const merged = mergeLinks([matchingEntry], [link])
+
+    expectDerivedToContainLink(merged, matchingEntry, link)
+  })
 })
