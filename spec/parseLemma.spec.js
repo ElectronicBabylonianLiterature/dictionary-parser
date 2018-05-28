@@ -13,6 +13,10 @@ describe('parseLemma', () => {
     expect(parseLemma('lemmum')).toEqual([['lemmu'], ['lemmum']])
   })
 
+  it('expands slash', () => {
+    expect(parseLemma('lemma/e')).toEqual([['lemma'], ['lemme']])
+  })
+
   it('parses compound lemmas', () => {
     expect(parseLemma('lemma1 lemma2')).toEqual([['lemma1', 'lemma2']])
   })

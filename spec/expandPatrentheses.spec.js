@@ -1,6 +1,6 @@
 const expandParentheses = require('../lib/expandParentheses.js')
 
-describe('expandAlternatives', () => {
+describe('expandParentheses', () => {
   it('generates all the forms when multiple mimations', () => {
     expect(expandParentheses('(a)b(c)d')).toEqual(jasmine.arrayWithExactContents(['bd', 'abd', 'bcd', 'abcd']))
   })
