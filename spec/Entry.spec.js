@@ -235,6 +235,7 @@ describe('Entry', () => {
     it('returns correct properties', () => {
       expect(entry.toPlainObject()).toEqual({
         lemma: entry.lemma,
+        attested: entry.attested,
         homonym: entry.homonym,
         forms: entry.forms,
         meaning: entry.meaning,
