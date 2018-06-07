@@ -10,7 +10,10 @@ function hasLemma (entry) {
 function isBroken (entry) {
   const hasBrokenForms = _(entry.forms).some(_.isString)
   const hasBrokenDerived = _(entry.derived).flatten().some(_.isString)
-  return hasBrokenForms || hasBrokenDerived
+  const hasBrokenAmplifiedMeaning = _(entry.derived)
+    .flatten()
+    .some(derived => _.isArray(derived.notes) && derived.notes.some(note => note.includes('**')))
+  return hasBrokenForms || hasBrokenDerived || hasBrokenAmplifiedMeaning
 }
 
 function isOk (entry) {
