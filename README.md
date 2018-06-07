@@ -100,11 +100,12 @@ Derived words have the following structure:
 }
 ```
 
-Derived froms has the following structure:
+Derived from has the following structure:
 ```
 {
   "lemma": "<lemma splitted to components with mardown removed>",
-  "homonym: "<homonym or I if not specified>"
+  "homonym: "<homonym or I if not specified>",
+  "notes": <an array of extra information>
 }
 ```
 
