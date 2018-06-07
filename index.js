@@ -13,7 +13,13 @@ function isBroken (entry) {
   const hasBrokenAmplifiedMeaning = _(entry.derived)
     .flatten()
     .some(derived => _.isArray(derived.notes) && derived.notes.some(note => note.includes('**')))
-  return hasBrokenForms || hasBrokenDerived || hasBrokenAmplifiedMeaning
+  const hasLostAmplifiedMeaning = _(entry.amplifiedMeanings)
+    .values()
+    .flatMap(_.values)
+    .map(value => value.meaning)
+    .some(value => _.isString(value) && value.includes('(') && !value.includes(')'))
+
+  return hasBrokenForms || hasBrokenDerived || hasBrokenAmplifiedMeaning || hasLostAmplifiedMeaning
 }
 
 function isOk (entry) {
