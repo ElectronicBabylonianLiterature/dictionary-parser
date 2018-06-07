@@ -58,7 +58,7 @@ Forms have the following structure:
 ```
 {
   "lemma": "<lemma splitted to components with mardown removed>",
-  "notes": <an array of extra information>
+ 
 }
 ```
 
@@ -75,9 +75,16 @@ Amplified meanings have the following structure:
 Entries have the following structure:
 ```
 {
-  "meaning": "<a common meaning of function or conjugation if specified>"
-  "<entry id>": "<meaning>",
-  "<entry id>": "<meaning>",
+  "meaning": <a common meaning of function or conjugation if specified see format below>
+  "<entry id>": {
+    "meaning": "<meaning>",
+    "vowels": [
+      {
+        "value": [<first vowel>, <second vowel>],
+        "notes": <an array of extra information>
+      }
+    ]
+  },
   ...
 }
 ```
