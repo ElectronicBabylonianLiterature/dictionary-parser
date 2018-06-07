@@ -61,3 +61,9 @@ lib/jasmine_examples/
 spec/helpers/jasmine_examples/
 spec/jasmine_examples/
 .vscode/
+unparseable.json
+unparseable-links.json
+links.json
+dictionary.json
+broken-links.json
+broken.json
