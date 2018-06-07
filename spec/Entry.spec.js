@@ -53,7 +53,8 @@ describe('Entry', () => {
 
   const derivedFromExamples = [
     ['', null],
-    [' \\< *derivedFrom*', 'derivedFrom']
+    [' \\< *derivedFrom*', {lemma: ['derivedFrom'], homonym: 'I'}],
+    [' \\< *derivedFrom* IV', {lemma: ['derivedFrom'], homonym: 'IV'}]
   ]
 
   for (const [lemma, homonym, forms, meaning, amplifiedMeanings, derived, derivedFrom] of cartesian(
@@ -177,7 +178,10 @@ describe('Entry', () => {
       })
 
       it('parses derived from correctly', () => {
-        expect(entry.derivedFrom).toEqual('derivedFrom')
+        expect(entry.derivedFrom).toEqual({
+          lemma: ['derivedFrom'],
+          homonym: 'I'
+        })
       })
     })
 

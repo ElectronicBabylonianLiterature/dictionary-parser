@@ -91,10 +91,18 @@ Logograms entrries have the following structure:
 Derived words have the following structure:
 ```
 {
-  "lemma": "<lemma with mardown removed>",
+  "lemma": "<lemma splitted to components with mardown removed>",
   "homonym: "<homonym or I if not specified>,
   "notes": <an array of extra information e.g. cf. or ?>,
   "source": <if entry was created due to a link the original row of the link>
+}
+```
+
+Derived froms has the following structure:
+```
+{
+  "lemma": "<lemma splitted to components with mardown removed>",
+  "homonym: "<homonym or I if not specified>"
 }
 ```
 
