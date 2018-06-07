@@ -79,6 +79,10 @@ describe('Entry', () => {
         expect(entry.attested).toEqual(true)
       })
 
+      it('parses legacyLemma correctly', () => {
+        expect(entry.legacyLemma).toEqual(lemma)
+      })
+
       it('parses homonym correctly', () => {
         expect(entry.homonym).toEqual(homonym[1])
       })
@@ -239,6 +243,7 @@ describe('Entry', () => {
     it('returns correct properties', () => {
       expect(entry.toPlainObject()).toEqual({
         lemma: entry.lemma,
+        legacyLemma: entry.legacyLemma,
         attested: entry.attested,
         homonym: entry.homonym,
         forms: entry.forms,

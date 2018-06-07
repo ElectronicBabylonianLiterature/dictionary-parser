@@ -1,3 +1,5 @@
+const Entry = require('../lib/Entry')
+
 describe('parse', () => {
   const parse = require('../lib/parse')
   const entryRow = '**lemma** "meaning"'
@@ -12,18 +14,7 @@ describe('parse', () => {
   it('parses entries', () => {
     expect(parse([entryRow])).toEqual({
       ...emptyResult,
-      entries: [{
-        lemma: [ 'lemma' ],
-        attested: true,
-        homonym: 'I',
-        forms: [],
-        meaning: '"meaning"',
-        amplifiedMeanings: {},
-        logograms: [],
-        derived: [],
-        derivedFrom: null,
-        source: entryRow
-      }]
+      entries: [new Entry(entryRow).toPlainObject()]
     })
   })
 

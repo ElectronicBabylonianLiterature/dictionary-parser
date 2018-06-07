@@ -41,7 +41,8 @@ The dictionary is parsed to a JSON file containing an array of entries:
 ```
 {
   "lemma": "<lemma splitted to components with mardown and * removed>",
-  "attested": <false is lemma starts with *, true otherwise>
+  "attested": <false is lemma starts with *, true otherwise>,
+  "legacyLemma": <unprocessed lemma from the original row>
   "homonym: "<homonym or I if not specified>",
   "forms": <array of forms and expanded lemma or an empty array if none specified>,
   "meaning": "<meaning>",
