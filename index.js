@@ -22,33 +22,41 @@ function hasTargets (link) {
 }
 
 function saveJson (dictionary, fileName) {
-  fs.writeFile(fileName, JSON.stringify(dictionary, null, '\t'), err => {
-    if (err) {
-      console.error(err)
-    }
-  })
+  return new Promise((resolve, reject) =>
+    fs.writeFile(fileName, JSON.stringify(dictionary, null, '\t'), err => err ? reject(err) : resolve())
+  )
 }
 
-fs.readFile(process.argv[2], 'utf8', (err, data) => {
-  if (err) {
-    console.error(err)
-  } else {
-    const dictionary = parse(data.split('\n'))
+function readRows (fileName) {
+  return new Promise((resolve, reject) =>
+    fs.readFile(fileName, 'utf8', (err, data) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(data.split('\n'))
+      }
+    })
+  )
+}
 
-    console.log(
-      '❌ ', dictionary.entries.filter(_.negate(hasLemma)).length + dictionary.links.filter(_.negate(hasTargets)).length,
-      '\n🔗 ', dictionary.links.filter(hasTargets).length - dictionary.unlinked.length,
-      ' 🚧 ', dictionary.unlinked.length,
-      '\n✔️ ', dictionary.entries.filter(isOk).length - dictionary.entries.filter(isBroken).length,
-      ' 🚧 ', dictionary.entries.filter(isBroken).length
-    )
+readRows(process.argv[2]).then(rows => {
+  const dictionary = parse(rows)
 
-    saveJson(dictionary.entries.filter(_.negate(hasLemma)).map(entry => entry.source), 'unparseable.json')
-    saveJson(dictionary.entries.filter(hasLemma), 'dictionary.json')
-    saveJson(dictionary.entries.filter(isBroken), 'broken.json')
+  console.log(
+    '❌ ', dictionary.entries.filter(_.negate(hasLemma)).length + dictionary.links.filter(_.negate(hasTargets)).length,
+    '\n🔗 ', dictionary.links.filter(hasTargets).length - dictionary.unlinked.length,
+    ' 🚧 ', dictionary.unlinked.length,
+    '\n✔️ ', dictionary.entries.filter(isOk).length - dictionary.entries.filter(isBroken).length,
+    ' 🚧 ', dictionary.entries.filter(isBroken).length,
+    ' 💥 ', _.keys(dictionary.duplicates).length
+  )
 
-    saveJson(dictionary.links.filter(_.negate(hasTargets)), 'unparseable-links.json')
-    saveJson(dictionary.links.filter(hasTargets), 'links.json')
-    saveJson(dictionary.unlinked, 'broken-links.json')
-  }
-})
+  saveJson(dictionary.entries.filter(_.negate(hasLemma)).map(entry => entry.source), 'unparseable.json')
+  saveJson(dictionary.entries.filter(hasLemma), 'dictionary.json')
+  saveJson(dictionary.entries.filter(isBroken), 'broken.json')
+  saveJson(dictionary.duplicates, 'duplicates.json')
+
+  saveJson(dictionary.links.filter(_.negate(hasTargets)), 'unparseable-links.json')
+  saveJson(dictionary.links.filter(hasTargets), 'links.json')
+  saveJson(dictionary.unlinked, 'broken-links.json')
+}).catch(console.error)

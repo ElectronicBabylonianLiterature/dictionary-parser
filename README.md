@@ -15,6 +15,7 @@ The script parses the given markdown file and produces the following files:
 - `unparseable.json`, rows which were not parsed to a entry or link
 - `dictionary.json`, all parsed entries with merged links
 - `broken.json`, a subset of parsed entries which unparseable forms or derived forms
+- `duplicates.json`, a collection of duplicate lemmata with counts
 - `unparseable-links.json`, rows which were recognized as links but did not have a valid target
 - `links.json`, all parsed links
 - `broken-links.json`, a subset of parsed links which did not have a matching entry
