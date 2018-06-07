@@ -7,6 +7,18 @@
 
 A script which transforms a dictionary from markdown to JSON.
 
+```
+node ./index.js <a path to a dictionary markdown file>
+```
+
+The script parses the given markdown file and produces the following files:
+- `unparseable.json`, rows which were not parsed to a entry or link
+- `dictionary.json`, all parsed entries with merged links
+- `broken.json`, a subset of parsed entries which unparseable forms or derived forms
+- `unparseable-links.json`, rows which were recognized as links but did not have a valid target
+- `links.json`, all parsed links
+- `broken-links.json`, a subset of parsed links which did not have a matching entry
+
 ## Input
 
 The dictionary is a markdown file with rows containing an entry `**<lemma>** <optional homonym><optional forms after a comma> <meaning><optional nested meanings of fucntions or confugations><optinal derived starting with \>><optinal derived from starting with \<>` or a link `<comma separated list of lemmata marked with **> <optionak etc.> \*cf.\* <list lemmata similar to derived forms>`. Empty lines are ignored.
