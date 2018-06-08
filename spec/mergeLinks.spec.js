@@ -57,4 +57,24 @@ describe('mergeLinks', () => {
 
     expectDerivedToContainLink(merged, matchingEntry, link)
   })
+
+  it('... adds link with replaced prefix', () => {
+    const link = new Link('**link...** *cf.* *matching...*')
+    const matchingEntry = new Entry('**matchinglemma** meaning')
+
+    const merged = mergeLinks([matchingEntry], [link])
+
+    expect(merged).toEqual({
+      entries: [{
+        ...matchingEntry.toPlainObject(),
+        derived: [[{
+          lemma: ['linklemma'],
+          homonym: 'I',
+          notes: [],
+          source: link.source
+        }]]
+      }],
+      unlinked: []
+    })
+  })
 })
