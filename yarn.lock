@@ -1392,6 +1392,10 @@ progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
 
+"progress@https://github.com/turbopope/node-progress.git":
+  version "2.0.0"
+  resolved "https://github.com/turbopope/node-progress.git#501e9d2c2d9624199b73d68678cebf29f43fe4c1"
+
 promise@^7.1.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/promise/-/promise-7.3.1.tgz#064b72602b18f90f29192b8b1bc418ffd1ebd3bf"
