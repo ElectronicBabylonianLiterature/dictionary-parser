@@ -8,7 +8,7 @@
 A script which transforms a dictionary from markdown to JSON.
 
 ```
-node ./index.js <a path to a dictionary markdown file>
+node index.js <a path to a dictionary markdown file>
 ```
 
 The script parses the given markdown file and produces the following files:
@@ -119,6 +119,8 @@ Derived from has the following structure:
 ## Link merging
 
 Lemmata from links are added as derived forms to words defined by the list after `\*cf.*\`. The derived from will use the notes from the link and has additional `source` property containing the original row of the link.
+
+If link and target lemmata end with `...` a derived form is added where the prefix target lemma is replaced with the prefix of the link lemma.
 
 ## Lemma expansion rules
 
