@@ -46,10 +46,6 @@ describe('parse', () => {
     })
   })
 
-  it('ignores empty rows', () => {
-    expect(parse([entryRow, '    ']).entries.length).toBe(1)
-  })
-
   it('unparseable rows have only source', () => {
     const unparseableRow = 'unparseable'
     expect(parse([unparseableRow])).toEqual({

@@ -3,6 +3,7 @@ const fs = require('fs')
 describe('readRows', () => {
   const readRows = require('../lib/readRows')
   const dictionary = `row1
+    
 row2`
   const fileName = 'dictionary.json'
 
@@ -12,7 +13,7 @@ row2`
     expect(fs.readFile).toHaveBeenCalledWith(fileName, 'utf8', jasmine.any(Function))
   })
 
-  it('splits by new line', async () => {
+  it('splits by new line and drops empty rows', async () => {
     spyOn(fs, 'readFile').and.callFake((file, charset, cb) => cb(null, dictionary))
     await readRows(fileName)
       .then(rows => expect(rows).toEqual(['row1', 'row2']))
