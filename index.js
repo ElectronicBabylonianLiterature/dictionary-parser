@@ -3,53 +3,27 @@ const _ = require('lodash')
 const parse = require('./lib/parse')
 const readRows = require('./lib/readRows')
 const saveJson = require('./lib/saveJson')
-
-function hasLemma (entry) {
-  return _.has(entry, 'lemma')
-}
-
-function isBroken (entry) {
-  const hasBrokenForms = _(entry.forms).some(_.isString)
-  const hasBrokenDerived = _(entry.derived).flatten().some(_.isString)
-  const hasBrokenAmplifiedMeaning = _(entry.derived)
-    .flatten()
-    .some(derived => _.isArray(derived.notes) && derived.notes.some(note => note.includes('**')))
-  const hasLostAmplifiedMeaning = _(entry.amplifiedMeanings)
-    .values()
-    .flatMap(_.values)
-    .map(value => value.meaning)
-    .some(value => _.isString(value) && value.includes('(') && !value.includes(')'))
-
-  return hasBrokenForms || hasBrokenDerived || hasBrokenAmplifiedMeaning || hasLostAmplifiedMeaning
-}
-
-function isOk (entry) {
-  return hasLemma(entry) && !isBroken(entry)
-}
-
-function hasTargets (link) {
-  return _.every(link.targets, targets => _.isArray(targets) && _.every(targets, _.isObject))
-}
+const checks = require('./lib/checks')
 
 readRows(process.argv[2]).then(rows => {
   const dictionary = parse(rows)
 
   console.log(
-    '❌ ', dictionary.entries.filter(_.negate(hasLemma)).length + dictionary.links.filter(_.negate(hasTargets)).length,
-    '\n🔗 ', dictionary.links.filter(hasTargets).length - dictionary.unlinked.length,
+    '❌ ', dictionary.entries.filter(_.negate(checks.hasLemma)).length + dictionary.links.filter(_.negate(checks.hasTargets)).length,
+    '\n🔗 ', dictionary.links.filter(checks.hasTargets).length - dictionary.unlinked.length,
     ' 🚧 ', dictionary.unlinked.length,
-    '\n✔️ ', dictionary.entries.filter(isOk).length - dictionary.entries.filter(isBroken).length,
-    ' 🚧 ', dictionary.entries.filter(isBroken).length,
+    '\n✔️ ', dictionary.entries.filter(checks.isOk).length - dictionary.entries.filter(checks.isBroken).length,
+    ' 🚧 ', dictionary.entries.filter(checks.isBroken).length,
     ' 💥 ', _.keys(dictionary.duplicates).length
   )
 
   return Promise.all([
-    saveJson(dictionary.entries.filter(_.negate(hasLemma)).map(entry => entry.source), 'unparseable.json'),
-    saveJson(dictionary.entries.filter(hasLemma), 'dictionary.json'),
-    saveJson(dictionary.entries.filter(isBroken), 'broken.json'),
+    saveJson(dictionary.entries.filter(_.negate(checks.hasLemma)).map(entry => entry.source), 'unparseable.json'),
+    saveJson(dictionary.entries.filter(checks.hasLemma), 'dictionary.json'),
+    saveJson(dictionary.entries.filter(checks.isBroken), 'broken.json'),
     saveJson(dictionary.duplicates, 'duplicates.json'),
-    saveJson(dictionary.links.filter(_.negate(hasTargets)), 'unparseable-links.json'),
-    saveJson(dictionary.links.filter(hasTargets), 'links.json'),
+    saveJson(dictionary.links.filter(_.negate(checks.hasTargets)), 'unparseable-links.json'),
+    saveJson(dictionary.links.filter(checks.hasTargets), 'links.json'),
     saveJson(dictionary.unlinked, 'broken-links.json')
   ])
 }).catch(console.error)
