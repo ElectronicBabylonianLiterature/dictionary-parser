@@ -77,4 +77,24 @@ describe('mergeLinks', () => {
       unlinked: []
     })
   })
+
+  it('... adds link with replaced prefix for forms', () => {
+    const link = new Link('**link...** *cf.* *matching...*')
+    const matchingEntry = new Entry('**lemma**, *matchinglemma* meaning')
+
+    const merged = mergeLinks([matchingEntry], [link])
+
+    expect(merged).toEqual({
+      entries: [{
+        ...matchingEntry.toPlainObject(),
+        derived: [[{
+          lemma: ['linklemma'],
+          homonym: 'I',
+          notes: [],
+          source: link.source
+        }]]
+      }],
+      unlinked: []
+    })
+  })
 })
