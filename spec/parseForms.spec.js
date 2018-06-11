@@ -11,7 +11,11 @@ const formExamples = [
     {lemma: ['form1', 'form'], attested: true, notes: ['note']},
     {lemma: ['form', 'form2'], attested: true, notes: ['note']},
     {lemma: ['form1', 'form2'], attested: true, notes: ['note']}
-  ]]
+  ]],
+  [', OAkk, MB *form1*', [{lemma: ['form1'], attested: true, notes: ['OAkk, MB']}]],
+  [', Am., Bogh. *form1*', [{lemma: ['form1'], attested: true, notes: ['Am., Bogh.']}]],
+  [', NB?, NA *form1*', [{lemma: ['form1'], attested: true, notes: ['NB?, NA']}]],
+  [', (or *form*)', [{lemma: ['form'], attested: true, notes: ['(or', ')']}]]
 ]
 
 describe('parseForms', () => {
