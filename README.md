@@ -14,7 +14,7 @@ node index.js <a path to a dictionary markdown file>
 The script parses the given markdown file and produces the following files:
 - `unparseable.json`, rows which were not parsed to a entry or link
 - `dictionary.json`, all parsed entries with merged links
-- `broken.json`, a subset of parsed entries which incorrectly parsed amplified meanings, unparseable forms, or unparseable derived forms
+- `broken.json`, incorrectly parsed entreis by error type: amplified meanings, unparseable forms, or unparseable derived forms, unmatched derived forms
 - `duplicates.json`, a collection of duplicate lemmata with counts
 - `unparseable-links.json`, rows which were recognized as links but did not have a valid target
 - `links.json`, all parsed links
