@@ -14,6 +14,7 @@ const formExamples = [
   ]],
   [', OAkk, MB *form1*', [{lemma: ['form1'], attested: true, notes: ['OAkk, MB']}]],
   [', Am., Bogh. *form1*', [{lemma: ['form1'], attested: true, notes: ['Am., Bogh.']}]],
+  [', Ass., Nuzi. *form1*', [{lemma: ['form1'], attested: true, notes: ['Ass., Nuzi.']}]],
   [', NB?, NA *form1*', [{lemma: ['form1'], attested: true, notes: ['NB?, NA']}]],
   [', (or *form*)', [{lemma: ['form'], attested: true, notes: ['(or', ')']}]]
 ]
