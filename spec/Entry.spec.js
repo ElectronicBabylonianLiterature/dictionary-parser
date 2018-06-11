@@ -234,6 +234,19 @@ describe('Entry', () => {
         expect(entry.meaning).toEqual('*cf.* "meaning" jB;')
       })
     })
+
+    describe('cf. at the end', () => {
+      const row = '**lemma** "meaning"; *cf.* *derived*'
+      const entry = new Entry(row)
+
+      it('cf. as derived form', () => {
+        expect(entry.derived).toEqual([[{
+          lemma: ['derived'],
+          homonym: 'I',
+          notes: ['*cf.*']
+        }]])
+      })
+    })
   })
 
   describe('toPlainObject', () => {
