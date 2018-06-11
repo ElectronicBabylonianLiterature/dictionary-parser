@@ -6,7 +6,8 @@ const examples = [
   [' \\> notes *derived* 3', [[{lemma: ['derived'], homonym: 'I', notes: ['notes', '3']}]]],
   [' \\> *cf.* *derived*?', [[{lemma: ['derived'], homonym: 'I', notes: ['*cf.*', '?']}]]],
   [' \\> *part1 part2*', [[{lemma: ['part1', 'part2'], homonym: 'I', notes: []}]]],
-  [' \\> *expan(d)*', [[{lemma: ['expan'], homonym: 'I', notes: []}]]]
+  [' \\> *expan(d)*', [[{lemma: ['expan'], homonym: 'I', notes: []}]]],
+  [' \\> OAkk, MB *derived*', [[{lemma: ['derived'], homonym: 'I', notes: ['OAkk, MB']}]]]
 ]
 
 describe('parseDerived', () => {
