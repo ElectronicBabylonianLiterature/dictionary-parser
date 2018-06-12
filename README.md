@@ -16,6 +16,7 @@ The script parses the given markdown file and produces the following files:
 - `dictionary.json`, all parsed entries with merged links
 - `broken.json`, incorrectly parsed entreis by error type: amplified meanings, unparseable forms, or unparseable derived forms, unmatched derived forms
 - `duplicates.json`, a collection of duplicate lemmata with counts
+- `unmatched-roots.json`, a list of roots which did not match any entry
 - `unparseable-links.json`, rows which were recognized as links but did not have a valid target
 - `links.json`, all parsed links
 - `broken-links.json`, a subset of parsed links which did not have a matching entry

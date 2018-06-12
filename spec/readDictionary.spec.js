@@ -25,8 +25,11 @@ describe('readDictionary', () => {
       }
     })
 
-    const expectedDictionary = parse(['**lemma** meaning'])
-    expectedDictionary.entries = addRoots(expectedDictionary.entries, [['lemma', 'root']])
+    const parsedDictionary = parse(['**lemma** meaning'])
+    const expectedDictionary = {
+      ...parsedDictionary,
+      ...addRoots(parsedDictionary.entries, [['lemma', 'root']])
+    }
 
     expect(await readDictionary(dictionaryFileName, rootsFileName)).toEqual(expectedDictionary)
   })
