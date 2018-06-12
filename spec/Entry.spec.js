@@ -45,7 +45,7 @@ describe('Entry', () => {
   const amplifiedMeaningsExamples = [
     '',
     ' **1.** "meaning1; meaning2" **2.** meaning;',
-    ' **G** meaning **D**  "meaning1; meaning2" **1.** meaning **2.** meaning **D** **1.** meaning;'
+    ' **G** meaning **D**  "meaning1; meaning2" **1.** meaning **2.** meaning **D** **11.** meaning;'
   ]
 
   const derivedExamples = [

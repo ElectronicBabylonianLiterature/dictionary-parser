@@ -2,7 +2,7 @@ const extractVowels = require('../lib/extractVowels')
 
 const examples = [
   ['', {}],
-  [' **1.** meaning **2.** meaning;', {implicit: {'1.': {meaning: 'meaning'}, '2.': {meaning: 'meaning'}}}],
+  [' **1.** meaning **10.** meaning;', {implicit: {'1.': {meaning: 'meaning'}, '10.': {meaning: 'meaning'}}}],
   [' **G** meaning **1.** meaning **2.** meaning;', {'G': {meaning: 'meaning', '1.': {meaning: 'meaning'}, '2.': {meaning: 'meaning'}}}],
   [' **D** **1.** meaning;', {'D': {'1.': {meaning: 'meaning'}}}],
   [' **A.** meaning **B.** meaning;', {'A.': {meaning: 'meaning'}, 'B.': {meaning: 'meaning'}}],
