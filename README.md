@@ -8,7 +8,7 @@
 A script which transforms a dictionary from markdown to JSON.
 
 ```
-node index.js <a path to a dictionary markdown file>
+node index.js <a path to a dictionary markdown file> <a path to a CSV file with roots>
 ```
 
 The script parses the given markdown file and produces the following files:
@@ -22,6 +22,8 @@ The script parses the given markdown file and produces the following files:
 
 ## Input
 
+### Dictionary
+
 The dictionary is a markdown file with rows containing an entry `**<lemma>** <optional homonym><optional forms after a comma> <meaning><optional nested meanings of fucntions or confugations><optinal derived starting with \>><optinal derived from starting with \<>` or a link `<comma separated list of lemmata marked with **> <optionak etc.> \*cf.\* <list lemmata similar to derived forms>`. Empty lines are ignored.
 
 Conjugation identfiers are: `G`, `Gtn`, `Gt`, `D`, `Dtn`, `Dt`, `Dtt`, `Š`, `Štn`, `Št`, `ŠD`, `N`, `Ntn`, `R`.
@@ -34,6 +36,9 @@ In the markdown the identifiers are bolded, e.g. `**G**`.
 
 Logograms are identified by `\[` and `\]`.
 
+### Roots
+
+The roots file should be a CSV file with two columns. The first colum should contain the unexpanded lemma and optional homonym numbers and the second column should contain the root.
 
 ## Output
 
@@ -50,7 +55,9 @@ The dictionary is parsed to a JSON file containing an array of entries:
   "logograms": <an array of logogram entries separated semicolons extracted from meaning and amplified meanings>,
   "derived": <array of derived words or an empty empty array if none specified>,
   "derivedFrom": "<derived from or null is not specified>",
-  "source": "<the original row>"
+  "source": "<the original row>",
+  "root": <the root if matching row was found in the roots CSV>,
+  "pos": <V if the rood was added>
 }
 ```
 

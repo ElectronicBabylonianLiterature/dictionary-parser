@@ -15,9 +15,7 @@ row2`
 
   it('splits by new line and drops empty rows', async () => {
     spyOn(fs, 'readFile').and.callFake((file, charset, cb) => cb(null, dictionary))
-    await readRows(fileName)
-      .then(rows => expect(rows).toEqual(['row1', 'row2']))
-      .catch(fail)
+    expect(await readRows(fileName)).toEqual(['row1', 'row2'])
   })
 
   it('returns rejected promise on error', async () => {
