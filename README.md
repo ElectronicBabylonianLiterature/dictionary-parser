@@ -134,4 +134,5 @@ If link and target lemmata end with `...` a derived form is added where the pref
 
 * A lemma with parentheses is expanded to a lemma without and a lemma with the contents of the parenteses. E.g. `malû(m)` -> `malû` and `malûm`.
 * A lemma ending with `-um` is expanded to two lemmata ending with `-u` and `-um`. E.g. `māmilūtum` -> `māmilūtu` and `māmilūtum`
+* A lemma ending with `-ûm` is expanded to two lemmata ending with `-û` and `-ûm`
 * In the case of multiple parentheses and/or `-um` all combinations are expanded.
