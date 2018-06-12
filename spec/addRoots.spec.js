@@ -26,6 +26,17 @@ describe('addRoots', () => {
     })
   })
 
+  it('adds unique roots', () => {
+    const matchingEntry = new Entry('**lemmu** meaning').toPlainObject()
+
+    expect(addRoots([matchingEntry], [['lemmu(m)', 'root'], ['lemmu', 'root']])).toEqual({
+      entries: [
+        {...matchingEntry, roots: ['root'], pos: 'V'}
+      ],
+      unmatchedRoots: []
+    })
+  })
+
   it('adds roots with homonym and POS to matching entries', () => {
     const matchingEntry1 = new Entry('**lemma** II meaning').toPlainObject()
     const matchingEntry2 = new Entry('**lemma** IV meaning').toPlainObject()
