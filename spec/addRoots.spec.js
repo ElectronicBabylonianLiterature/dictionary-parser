@@ -8,8 +8,19 @@ describe('addRoots', () => {
 
     expect(addRoots([matchingEntry, nonMatchingEntry], [['lemmu(m)', 'lmm']])).toEqual({
       entries: [
-        {...matchingEntry, root: 'lmm', pos: 'V'},
+        {...matchingEntry, roots: ['lmm'], pos: 'V'},
         nonMatchingEntry
+      ],
+      unmatchedRoots: []
+    })
+  })
+
+  it('adds all roots', () => {
+    const matchingEntry = new Entry('**lemmu** meaning').toPlainObject()
+
+    expect(addRoots([matchingEntry], [['lemmu(m)', 'root1'], ['lemmu', 'root2']])).toEqual({
+      entries: [
+        {...matchingEntry, roots: ['root1', 'root2'], pos: 'V'}
       ],
       unmatchedRoots: []
     })
@@ -22,8 +33,8 @@ describe('addRoots', () => {
 
     expect(addRoots([matchingEntry1, matchingEntry2, nonMatchingEntry], [['lemma II.IV', 'lmm']])).toEqual({
       entries: [
-        {...matchingEntry1, root: 'lmm', pos: 'V'},
-        {...matchingEntry2, root: 'lmm', pos: 'V'},
+        {...matchingEntry1, roots: ['lmm'], pos: 'V'},
+        {...matchingEntry2, roots: ['lmm'], pos: 'V'},
         nonMatchingEntry
       ],
       unmatchedRoots: []
