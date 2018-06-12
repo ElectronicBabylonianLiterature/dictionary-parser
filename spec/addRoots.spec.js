@@ -9,7 +9,7 @@ describe('addRoots', () => {
     expect(addRoots([matchingEntry, nonMatchingEntry], [['lemmu(m)', 'lmm']])).toEqual({
       entries: [
         {...matchingEntry, roots: ['lmm'], pos: 'V'},
-        nonMatchingEntry
+        {...nonMatchingEntry, pos: ''}
       ],
       unmatchedRoots: []
     })
@@ -46,7 +46,7 @@ describe('addRoots', () => {
       entries: [
         {...matchingEntry1, roots: ['lmm'], pos: 'V'},
         {...matchingEntry2, roots: ['lmm'], pos: 'V'},
-        nonMatchingEntry
+        {...nonMatchingEntry, pos: ''}
       ],
       unmatchedRoots: []
     })
@@ -57,7 +57,7 @@ describe('addRoots', () => {
 
     expect(addRoots([nonMatchingEntry], [['lemma', 'lmm']])).toEqual({
       entries: [
-        nonMatchingEntry
+        {...nonMatchingEntry, pos: ''}
       ],
       unmatchedRoots: ['lemma, lmm']
     })
