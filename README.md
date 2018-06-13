@@ -43,6 +43,13 @@ The roots file should be a CSV file with two columns. The first colum should con
 
 ## Output
 
+After the parsing a summary of results is displayed:
+```
+❌ <number of unparseable rows (entries + links)>
+🔗 <number of parsed links>  🚧 <number of links with incorrectly parsed targets>
+✔️ <number of parsed entries>  🚧 <number of broken entries> 💥 <number of duplicate lemmata> ❓ <number of unmatched roots>
+```
+
 The dictionary is parsed to a JSON file containing an array of entries:
 ```
 {
