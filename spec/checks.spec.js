@@ -81,6 +81,11 @@ describe('checks', () => {
       const correctEntry = new Entry('**lemma** meaning **D** (or **Gt** ?)').toPlainObject()
       expect(checks.hasLostAmplifiedMeaning(correctEntry)).toEqual(true)
     })
+
+    it('returns true for lost amplified entry', () => {
+      const correctEntry = new Entry('**lemma** meaning **D** meaning **1.** (or **Gt** ?)').toPlainObject()
+      expect(checks.hasLostAmplifiedMeaning(correctEntry)).toEqual(true)
+    })
   })
 
   describe('hasBrokenVowels', () => {
