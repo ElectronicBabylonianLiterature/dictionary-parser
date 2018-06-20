@@ -81,8 +81,8 @@ Amplified meanings have the following structure:
 ```
 {
   "implicit": <a map of entries if no top level identifier was specified>,
-  "<function or conjugation identifier>": <a map of entries>,
-  "<function or conjugation identifier>": <a map of entries>,
+  "<function or conjugation identifier>": <an entry>,
+  "<function or conjugation identifier>": <an entry>,
   ...
 }
 ```
@@ -98,7 +98,8 @@ Entries have the following structure:
         "value": [<first vowel>, <second vowel>],
         "notes": <an array of extra information>
       }
-    ]
+    ],
+    "entries": <an array of entries, only on top level>
   },
   ...
 }
