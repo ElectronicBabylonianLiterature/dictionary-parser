@@ -59,7 +59,7 @@ The dictionary is parsed to a JSON file containing an array of entries:
   "homonym: "<homonym or I if not specified>",
   "forms": <array of forms and expanded lemma or an empty array if none specified>,
   "meaning": "<meaning>",
-  "amplifiedMeanings": <amplified meadings or an empty object of not specified>,
+  "amplifiedMeanings": <an array of top level entries>,
   "logograms": <an array of logogram entries separated semicolons extracted from meaning and amplified meanings>,
   "derived": <array of derived words or an empty empty array if none specified>,
   "derivedFrom": "<derived from or null is not specified>",
@@ -77,31 +77,18 @@ Forms have the following structure:
 }
 ```
 
-Amplified meanings have the following structure:
-```
-{
-  "implicit": <a map of entries if no top level identifier was specified>,
-  "<function or conjugation identifier>": <an entry>,
-  "<function or conjugation identifier>": <an entry>,
-  ...
-}
-```
-
 Entries have the following structure:
 ```
 {
-  "meaning": <a common meaning of function or conjugation if specified see format below>
-  "<entry id>": {
-    "meaning": "<meaning>",
-    "vowels": [
-      {
-        "value": [<first vowel>, <second vowel>],
-        "notes": <an array of extra information>
-      }
-    ],
-    "entries": <an array of entries, only on top level>
-  },
-  ...
+  "key": "<conjugation or function, only on top level, empty string if no top level identifier was specified>",
+  "meaning": <meaning>,
+  "vowels": [
+    {
+      "value": [<first vowel>, <second vowel>],
+      "notes": <an array of extra information>
+    }
+  ],
+  "entries": <an array of entries, only on top level>
 }
 ```
 
