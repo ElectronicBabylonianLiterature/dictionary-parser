@@ -1,6 +1,6 @@
 {
   "name": "dictionary-parser",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A script which transforms a dictionary from markdown to JSON.",
   "main": "index.js",
   "repository": "https://github.com/ElectronicBabylonianLiterature/dictionary-parser.git",
