@@ -131,3 +131,7 @@ If link and target lemmata end with `...` a derived form is added where the pref
 * A lemma ending with `-um` is expanded to two lemmata ending with `-u` and `-um`. E.g. `māmilūtum` -> `māmilūtu` and `māmilūtum`
 * A lemma ending with `-ûm` is expanded to two lemmata ending with `-û` and `-ûm`
 * In the case of multiple parentheses and/or `-um` all combinations are expanded.
+
+# Known issues
+
+If the derived from does not contain a lemma, i.e. mardown italics, it is not parsed at all. `scripts/fixDerivedFroms.js` can be used to fix the data in a Mongo database.
