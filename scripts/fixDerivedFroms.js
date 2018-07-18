@@ -22,4 +22,3 @@ db.words.find({
   }
   db.words.save(word)
 })
-/* eslint-disable no-undef */
