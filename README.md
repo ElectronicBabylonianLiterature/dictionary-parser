@@ -138,6 +138,6 @@ Not all words are parsed correctly. Rare and complicated errors should be fixed 
 
 If the derived from does not contain a lemma, i.e. mardown italics, it is not parsed at all. `scripts/fixDerivedFroms.js` can be used to fix the data in a Mongo database.
 
-The notes array does not take the position of notes in consideration. If an entry has only a post note it will incorrectla appear before the lemma. To work around this an empty note at index zero needs to be added. This can done by `scripts/fixDerivedFromNotes.js` for derived from.
+The notes array does not take the position of notes in consideration. If an entry has only a post note it will incorrectla appear before the lemma. To work around this an empty note at index zero needs to be added. This can done by `scripts/fixDerivedFromNotes.js` and `scripts/fixDerivedNotes.js`.
 
 To find a target for all the links, matching was also done to forms. This lead to incorrectly merged links. The links need to be removed from the dictionary add readded with correct matching. Derived forms with a `source` proprty were generated from links.

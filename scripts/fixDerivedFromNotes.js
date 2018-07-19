@@ -22,3 +22,22 @@ db.words.find({
     db.words.save(word)
   }
 })
+
+db.words.update(
+  {
+    'derivedFrom.notes.0': {
+      $regex: /^(etc\..*|G|Gtn|Gt|D|Dtn|Dt|Dtt|Š|Štn|Št|ŠD|N|Ntn|R|Št2|\?)$/
+    }
+  },
+  {
+    $push: {
+      'derivedFrom.notes': {
+        $position: 0,
+        $each: ['']
+      }
+    }
+  },
+  {
+    multi: true
+  }
+)
